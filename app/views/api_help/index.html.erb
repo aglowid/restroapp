@@ -34,14 +34,12 @@
             link_name: 'Login',
             link_href: 'login',
             link_method: 'POST',
-            original_link: "#{}",
+            original_link: api_login_path ,
             parameters: [
-              {name: 'username', description: 'User name of User', required: 1 },
+              {name: 'email', description: 'Email Address of User', required: 1 },
               {name: 'password', description: 'Password', required: 1},
-              {name: 'version', description: 'User api version', required: 0},
               {name: 'device_token', description: 'Device Id', required: 1},
               {name: 'device_type', description: 'Device type', required: 1},
-              {name: 'device_udid', description: 'Device udid', required: 1}
             ],
             options: {}} %>
 
@@ -51,7 +49,7 @@
             link_name: 'Logout',
             link_href: 'logout',
             link_method: 'GET',
-            original_link: "#{}",
+            original_link: api_logout_path,
             parameters: [
               {name: 'authentication_token', description: 'You will get authentication token from signup/login api', required: 1 }
 
@@ -63,7 +61,7 @@
             link_name: 'Change Password',
             link_href: 'change_password',
             link_method: 'POST',
-            original_link: "#",
+            original_link: api_change_password_path,
             parameters: [
               {name: 'authentication_token', description: 'You will get authentication token from signup/login api', required: 1 },
               {name: 'user[current_password]', description: 'Current Password', required: 1 },
@@ -77,10 +75,9 @@
             link_name: 'Forgot Password',
             link_href: 'forgot_password',
             link_method: 'POST',
-            original_link: '#',
+            original_link: api_forgot_password_path,
             parameters: [
-              {name: 'email', description: 'Email Address of User', required: 1 },
-              {name: 'device_token_or_udid', description: 'User device udid', required: 1 }
+              {name: 'email', description: 'Email Address of User', required: 1 }
             ],
             options: {}} %>
 

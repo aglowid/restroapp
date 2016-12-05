@@ -6,7 +6,7 @@ class AuthenticationToken < ActiveRecord::Base
   validates :auth_token, :user_id, :presence => true
 
   # Scope
-  #scope :current_authentication_token_for_user, lambda{|user_id,token| joins(:user).where("users.id =? and auth_token = ?",user_id,token).readonly(false)}
+  scope :current_authentication_token_for_user, lambda{|user_id,token| joins(:user).where("users.id =? and auth_token = ?",user_id,token).readonly(false)}
 
   # Class Methods
   class << self
