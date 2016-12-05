@@ -10,7 +10,11 @@ class ApiIndexRenderer
   class << self
     def user_api_index
       index_arr = []
-
+      index_arr << ApiIndexRenderer.new("Sign up", "signup", "POST")
+      index_arr << ApiIndexRenderer.new("Login", "login", "POST")
+      index_arr << ApiIndexRenderer.new("Logout", "logout", "GET")
+      index_arr << ApiIndexRenderer.new("Change Password", "change_password", "POST")
+      index_arr << ApiIndexRenderer.new("Forgot Password", "forgot_password", "POST")
       index_arr
     end
   end
