@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Table no:</strong>
+  <%= @dinning_table.table_no %>
+</p>
+
+<p>
+  <strong>Max seat:</strong>
+  <%= @dinning_table.max_seat %>
+</p>
+
+<p>
+  <strong>Is available:</strong>
+  <%= @dinning_table.is_available %>
+</p>
+
+<%= link_to 'Edit', edit_dinning_table_path(@dinning_table) %> |
+<%= link_to 'Back', dinning_tables_path %>

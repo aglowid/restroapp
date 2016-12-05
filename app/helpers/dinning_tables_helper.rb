@@ -1,0 +1,2 @@
+module DinningTablesHelper
+end

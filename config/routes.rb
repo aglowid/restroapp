@@ -1,4 +1,14 @@
 Restroapp::Application.routes.draw do
+  resources :foods
+
+  resources :food_labels
+
+  resources :food_types
+
+  resources :food_categories
+
+  resources :dinning_tables
+
   devise_for :users
   get "home/index"
   # The priority is based upon order of creation: first created -> highest priority.

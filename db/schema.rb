@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205073745) do
+ActiveRecord::Schema.define(version: 20161205090218) do
 
   create_table "authentication_tokens", force: true do |t|
     t.integer  "users_id"
@@ -21,6 +21,44 @@ ActiveRecord::Schema.define(version: 20161205073745) do
   end
 
   add_index "authentication_tokens", ["users_id"], name: "index_authentication_tokens_on_users_id", using: :btree
+
+  create_table "dinning_tables", force: true do |t|
+    t.integer  "table_no"
+    t.integer  "max_seat"
+    t.boolean  "is_available"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_labels", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "food_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foods", force: true do |t|
+    t.string   "name"
+    t.text     "ingredients"
+    t.text     "description"
+    t.integer  "food_type_id"
+    t.integer  "food_category_id"
+    t.integer  "food_label_id"
+    t.string   "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_types", force: true do |t|
     t.string   "name"
@@ -53,4 +91,5 @@ ActiveRecord::Schema.define(version: 20161205073745) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["user_types_id"], name: "index_users_on_user_types_id", using: :btree
+
 end

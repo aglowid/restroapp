@@ -1,0 +1,29 @@
+<%= form_for(@dinning_table) do |f| %>
+  <% if @dinning_table.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dinning_table.errors.count, "error") %> prohibited this dinning_table from being saved:</h2>
+
+      <ul>
+      <% @dinning_table.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :table_no %><br>
+    <%= f.number_field :table_no %>
+  </div>
+  <div class="field">
+    <%= f.label :max_seat %><br>
+    <%= f.number_field :max_seat %>
+  </div>
+  <div class="field">
+    <%= f.label :is_available %><br>
+    <%= f.check_box :is_available %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

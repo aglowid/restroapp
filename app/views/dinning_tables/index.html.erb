@@ -1,0 +1,31 @@
+<h1>Listing dinning_tables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Table no</th>
+      <th>Max seat</th>
+      <th>Is available</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dinning_tables.each do |dinning_table| %>
+      <tr>
+        <td><%= dinning_table.table_no %></td>
+        <td><%= dinning_table.max_seat %></td>
+        <td><%= dinning_table.is_available %></td>
+        <td><%= link_to 'Show', dinning_table %></td>
+        <td><%= link_to 'Edit', edit_dinning_table_path(dinning_table) %></td>
+        <td><%= link_to 'Destroy', dinning_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dinning table', new_dinning_table_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  table_no: 1
+  max_seat: 1
+  is_available: false
+
+two:
+  table_no: 1
+  max_seat: 1
+  is_available: false

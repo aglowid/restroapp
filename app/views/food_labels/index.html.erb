@@ -1,0 +1,27 @@
+<h1>Listing food_labels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @food_labels.each do |food_label| %>
+      <tr>
+        <td><%= food_label.name %></td>
+        <td><%= link_to 'Show', food_label %></td>
+        <td><%= link_to 'Edit', edit_food_label_path(food_label) %></td>
+        <td><%= link_to 'Destroy', food_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food label', new_food_label_path %>
