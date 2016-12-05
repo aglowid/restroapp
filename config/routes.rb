@@ -21,6 +21,16 @@ Restroapp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get "api_help/index"
+
+    namespace :api, :defaults => {:format => 'json'} do
+    scope :module => :v1 do
+      post 'sign_up' => 'users#sign_up',:as => :signup
+      post 'login'  => 'sessions#create', :as => :login
+      get  'logout' => 'sessions#destroy', :as => :logout
+      post 'change_password'   => 'passwords#change_password'
+      post 'forgot_password'   => 'passwords#create'
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
