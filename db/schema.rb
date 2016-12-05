@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205072346) do
+ActiveRecord::Schema.define(version: 20161205073745) do
+
+  create_table "authentication_tokens", force: true do |t|
+    t.integer  "users_id"
+    t.string   "auth_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentication_tokens", ["users_id"], name: "index_authentication_tokens_on_users_id", using: :btree
 
   create_table "user_types", force: true do |t|
     t.string   "name"
