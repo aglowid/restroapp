@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205090218) do
+ActiveRecord::Schema.define(version: 20161205100615) do
 
   create_table "authentication_tokens", force: true do |t|
     t.integer  "users_id"
@@ -56,6 +56,23 @@ ActiveRecord::Schema.define(version: 20161205090218) do
     t.integer  "food_category_id"
     t.integer  "food_label_id"
     t.string   "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_items", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "food_id"
+    t.integer  "qty"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.integer  "dinning_table_id"
+    t.integer  "user_id"
+    t.integer  "no_of_person"
+    t.string   "bill_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

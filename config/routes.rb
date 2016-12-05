@@ -1,4 +1,8 @@
 Restroapp::Application.routes.draw do
+  resources :order_items
+
+  resources :orders
+
   resources :foods
 
   resources :food_labels

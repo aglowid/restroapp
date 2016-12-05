@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dinning_table_id: 1
+  user_id: 1
+  no_of_person: 1
+  bill_amount: MyString
+
+two:
+  dinning_table_id: 1
+  user_id: 1
+  no_of_person: 1
+  bill_amount: MyString
