@@ -34,14 +34,12 @@
             link_name: 'Login',
             link_href: 'login',
             link_method: 'POST',
-            original_link: "#{}",
+            original_link: api_login_path ,
             parameters: [
-              {name: 'username', description: 'User name of User', required: 1 },
+              {name: 'email', description: 'Email Address of User', required: 1 },
               {name: 'password', description: 'Password', required: 1},
-              {name: 'version', description: 'User api version', required: 0},
               {name: 'device_token', description: 'Device Id', required: 1},
               {name: 'device_type', description: 'Device type', required: 1},
-              {name: 'device_udid', description: 'Device udid', required: 1}
             ],
             options: {}} %>
 

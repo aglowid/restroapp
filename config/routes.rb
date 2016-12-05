@@ -25,8 +25,8 @@ Restroapp::Application.routes.draw do
     namespace :api, :defaults => {:format => 'json'} do
     scope :module => :v1 do
       post 'sign_up' => 'users#sign_up',:as => :signup
-      post 'login'  => 'sessions#create', :as => :login
-      get  'logout' => 'sessions#destroy', :as => :logout
+      post 'login'  => 'users#sign_in', :as => :login
+      get  'logout' => 'users#destroy', :as => :logout
       post 'change_password'   => 'passwords#change_password'
       post 'forgot_password'   => 'passwords#create'
     end
