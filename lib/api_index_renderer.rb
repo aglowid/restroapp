@@ -15,6 +15,8 @@ class ApiIndexRenderer
       index_arr << ApiIndexRenderer.new("Logout", "logout", "GET")
       index_arr << ApiIndexRenderer.new("Change Password", "change_password", "POST")
       index_arr << ApiIndexRenderer.new("Forgot Password", "forgot_password", "POST")
+      index_arr << ApiIndexRenderer.new("Check Table Availability", "check_table_availability", "POST")
+      index_arr << ApiIndexRenderer.new("Place Order", "place_order", "POST")
       index_arr
     end
   end

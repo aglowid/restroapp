@@ -81,3 +81,30 @@
             ],
             options: {}} %>
 
+
+<!-- Check Table Availability Api -->
+<%= render  partial: 'api', locals: {
+            link_name: 'Check Table Availability',
+            link_href: 'check_table_availability',
+            link_method: 'POST',
+            original_link: api_check_table_availability_path,
+            parameters: [
+              {name: 'authentication_token', description: 'You will get authentication token from signup/login api', required: 1 },
+              {name: 'no_of_person', description: 'booking for how many person', required: 1 }
+            ],
+            options: {}} %>
+
+
+<!-- Place Order Api -->
+<%= render  partial: 'api', locals: {
+            link_name: 'Place Order',
+            link_href: 'place_order',
+            link_method: 'POST',
+            original_link: api_place_order_path,
+            parameters: [
+              {name: 'authentication_token', description: 'You will get authentication token from signup/login api', required: 1 },
+              {name: 'dinning_table_id', description: 'Order is for which table', required: 1 },
+              {name: 'no_of_person', description: 'No of pesron on table', required: 1 },
+              {name: 'order_items', description: 'array of ordered items ex- {1 => [food_id,qty] , 2 => [food_id,qty]}', required:1} 
+            ],
+            options: {}} %>            

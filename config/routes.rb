@@ -29,6 +29,8 @@ Restroapp::Application.routes.draw do
       get  'logout' => 'users#sign_out', :as => :logout
       post 'change_password'   => 'passwords#change_password'
       post 'forgot_password'   => 'passwords#forgot_password'
+      post 'check_table_availability' => 'orders#check_table_availability'
+      post 'place_order' => 'orders#place_order'
     end
   end
   # Example of regular route:
