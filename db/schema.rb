@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205100615) do
+ActiveRecord::Schema.define(version: 20161205102337) do
 
   create_table "authentication_tokens", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -60,19 +60,19 @@ ActiveRecord::Schema.define(version: 20161205100615) do
     t.datetime "updated_at"
   end
 
-  create_table "order_items", force: true do |t|
-    t.integer  "order_id"
-    t.integer  "food_id"
-    t.integer  "qty"
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id",   limit: 4
+    t.integer  "food_id",    limit: 4
+    t.integer  "qty",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: true do |t|
-    t.integer  "dinning_table_id"
-    t.integer  "user_id"
-    t.integer  "no_of_person"
-    t.string   "bill_amount"
+  create_table "orders", force: :cascade do |t|
+    t.integer  "dinning_table_id", limit: 4
+    t.integer  "user_id",          limit: 4
+    t.integer  "no_of_person",     limit: 4
+    t.string   "bill_amount",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
