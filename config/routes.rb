@@ -26,9 +26,9 @@ Restroapp::Application.routes.draw do
     scope :module => :v1 do
       post 'sign_up' => 'users#sign_up',:as => :signup
       post 'login'  => 'users#sign_in', :as => :login
-      get  'logout' => 'users#destroy', :as => :logout
+      get  'logout' => 'users#sign_out', :as => :logout
       post 'change_password'   => 'passwords#change_password'
-      post 'forgot_password'   => 'passwords#create'
+      post 'forgot_password'   => 'passwords#forgot_password'
     end
   end
   # Example of regular route:
