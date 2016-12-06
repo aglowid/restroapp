@@ -1,31 +1,47 @@
-<h1>Listing dinning_tables</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Table no</th>
-      <th>Max seat</th>
-      <th>Is available</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= content_for :header do %>
+  Dinning tables
+<% end %>
+<%= content_for :sub_header do %>
+  <li class="active"> Listing Dinning tables </li>
+<% end %>
+<%= content_for :add_btn do %>
+  <%= link_to new_dinning_table_path , class: "btn border-danger-300 text-danger-300 btn-flat btn-rounded btn-icon btn-sm has-text" do %>
+    <i class="icon-plus3"></i>
+  <% end %>
+<% end %>
+<%= render '/users/base/page_header' %>
 
-  <tbody>
-    <% @dinning_tables.each do |dinning_table| %>
-      <tr>
-        <td><%= dinning_table.table_no %></td>
-        <td><%= dinning_table.max_seat %></td>
-        <td><%= dinning_table.is_available %></td>
-        <td><%= link_to 'Show', dinning_table %></td>
-        <td><%= link_to 'Edit', edit_dinning_table_path(dinning_table) %></td>
-        <td><%= link_to 'Destroy', dinning_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body table-width">
+      <table class="table datatable-basic">
+        <thead>
+        <tr id="sort_data">
+          <th>Table no</th>
+          <th>Max seat</th>
+          <th>Is available</th>
+          <th></th>
+          <th></th>
+          <th class ="text-center" id="list_action"><b>Action</b></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @dinning_tables.each do |dinning_table| %>
+          <tr>
+            <td><%= dinning_table.table_no %></td>
+            <td><%= dinning_table.max_seat %></td>
+            <td><%= dinning_table.is_available %></td>
+            <td><%= link_to 'Show', dinning_table %></td>
+            <td><%= link_to 'Edit', edit_dinning_table_path(dinning_table) %></td>
+            <td><%= link_to 'Destroy', dinning_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'New Dinning table', new_dinning_table_path %>
+

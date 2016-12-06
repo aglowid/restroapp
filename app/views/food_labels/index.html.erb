@@ -1,27 +1,40 @@
-<h1>Listing food_labels</h1>
+<%= content_for :header do %>
+  Food labels
+<% end %>
+<%= content_for :sub_header do %>
+  <li class="active"> Food labels </li>
+<% end %>
+<%= content_for :add_btn do %>
+  <%= link_to new_food_label_path , class: "btn border-danger-300 text-danger-300 btn-flat btn-rounded btn-icon btn-sm has-text" do %>
+    <i class="icon-plus3"></i>
+  <% end %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= render '/users/base/page_header' %>
 
-  <tbody>
-    <% @food_labels.each do |food_label| %>
-      <tr>
-        <td><%= food_label.name %></td>
-        <td><%= link_to 'Show', food_label %></td>
-        <td><%= link_to 'Edit', edit_food_label_path(food_label) %></td>
-        <td><%= link_to 'Destroy', food_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Food label', new_food_label_path %>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body table-width">
+      <table class="table datatable-basic">
+        <thead>
+        <tr id="sort_data">
+          <th>Name</th>
+          <th></th>
+          <th></th>
+          <th class ="text-center" id="list_action"><b>Action</b></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @food_labels.each do |food_label| %>
+          <tr>
+            <td><%= food_label.name %></td>
+            <td><%= link_to 'Show', food_label %></td>
+            <td><%= link_to 'Edit', edit_food_label_path(food_label) %></td>
+            <td><%= link_to 'Destroy', food_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
