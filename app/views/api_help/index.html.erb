@@ -23,7 +23,7 @@
               {name: 'user[last_name]', description: 'Last Name', required: 1},
               {name: 'user[contact_no]', description: 'Contact Num', required: 1},
               {name: 'user[gender]', description: 'Gender [ Must be Male or Female ]', required: 0},
-              {name: 'user[user_type_id]', description: 'Select type from [ Must be (1,2,3) 1 for SuperAdmin or 2 for BusinessUser or 3 for NormalUser ]', required: 1},
+              {name: 'user[user_type_id]', description: 'Select type from [ Must be (1,2,3) 1 for Admin or 2 for Waiter or 3 for Manager ]', required: 1},
               {name: 'user[device_type]', description: 'Device type', required: 1},
               {name: 'user[device_token]', description: 'Device token', required: 1},
             ],
@@ -103,8 +103,8 @@
             original_link: api_place_order_path,
             parameters: [
               {name: 'authentication_token', description: 'You will get authentication token from signup/login api', required: 1 },
-              {name: 'dinning_table_id', description: 'Order is for which table', required: 1 },
-              {name: 'no_of_person', description: 'No of pesron on table', required: 1 },
-              {name: 'order_items', description: 'array of ordered items ex- {1 => [food_id,qty] , 2 => [food_id,qty]}', required:1} 
+              {name: 'order[dinning_table_id]', description: 'Order is for which table', required: 1 },
+              {name: 'order[no_of_person]', description: 'No of pesron on table', required: 1 },
+              {name: 'order[order_items_attributes]', description: 'array of ordered items ex-  [{:food_id => 1, :qty =>1},{:food_id => 1, :qty => 3} ]', required:1} 
             ],
             options: {}} %>            
