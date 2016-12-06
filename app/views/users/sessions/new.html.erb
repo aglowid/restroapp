@@ -1,0 +1,95 @@
+<!-- Page container -->
+<div class="page-container login-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Content area -->
+            <div class="content">
+                <!-- Simple login form -->
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"}) do |f| %>
+                    <div class="panel panel-body login-form">
+                        <div class="text-center">
+                            <div class="icon-object border-teal-400 text-teal-400"><i class="icon-reading"></i></div>
+                            <h5 class="content-group">Login to your account <small class="display-block">Enter your credentials below</small></h5>
+                        </div>
+
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <% if flash[:notice] %>
+                              <div class="alert bg-success" id="flashm">
+                                <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+                                </button>
+                                <span class="text-semibold"><%= flash[:notice] %>
+                              </div>
+                            <% elsif flash[:error] %>
+                              <div class="alert bg-danger" id="flashm">
+                                <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+                                </button>
+                                <span class="text-semibold"><%= flash[:error] %>
+                              </div>
+                            <% end %>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <div class="form-control-feedback">
+                                <i class="icon-user text-muted"></i>
+                            </div>
+                            <%= f.email_field :email, autofocus: true , :class => "form-control" , placeholder: "Email" %>
+                        </div>
+
+                        <div class="form-group has-feedback has-feedback-left">
+                            <div class="form-control-feedback">
+                                <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            <%= f.password_field :password, autocomplete: "off" , :class => "form-control" , placeholder: "Password" %>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <% if devise_mapping.rememberable? -%>
+                                    <label class="form-group checkbox-inline">
+                                      <%= f.check_box :remember_me , class: "styled" %>
+                                      <%= f.label :remember_me %>
+                                    </label><br/>
+                                <% end -%>
+                            </div>
+                            <div class="col-sm-6">
+                                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                                      <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-danger" %><br />
+                                <% end -%>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn bg-teal-400 btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                        </div>
+                        <div class="content-divider text-muted form-group">
+                            <span>Don't have an account?</span>
+                        </div>
+                        <div class="form-group">
+                            <%= link_to root_path , class: "btn btn-default btn-block" do %>
+                                <span>Sign up</span>
+                            <% end %>
+                        </div>
+
+                        <div class="text-center">
+                            <%#= render "users/shared/links" %>
+                        </div>
+                    </div>
+                <% end %>
+                <!-- /simple login form -->
+            </div>
+            <!-- /content area -->
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#uniform-user_remember_me').addClass("border-teal-400 text-teal-600")
+    });
+</script>

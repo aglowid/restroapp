@@ -2,21 +2,29 @@
 <html>
 <head>
   <title>Restroapp</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">-->
+  <%= stylesheet_link_tag    'super_admin', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'super_admin', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
+  <%= render "layouts/super_admin/header" %>
+  <div class="page-container">
+    <div class="page-content">
+      <%= render "layouts/super_admin/sidebar" %>
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
+    </div>
+   </div>
+  <%= render "layouts/super_admin/footer" %>
+</body>
+</html>
 
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
 
-<p class="navbar-text pull-right">
-  <% if user_signed_in? %>
+<!--   <% if user_signed_in? %>
     Logged in as <strong><%= current_user.email %></strong>.
     <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
     <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
@@ -29,11 +37,4 @@
   <% else %>
     <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
     <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-  <% end %>
-
-
-
-<%= yield %>
-
-</body>
-</html>
+  <% end %> -->

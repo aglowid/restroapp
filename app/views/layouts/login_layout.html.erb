@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restroapp</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+   -->
+ 	<%= stylesheet_link_tag    'login', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'login_layout', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<%= render "layouts/login_layout/header" %>
+	<div class="page-container">
+		<div class="page-content">
+		  <div class="content-wrapper">
+				<%= yield %>
+		  </div>
+		</div>
+	</div>
+	<%#= render "layouts/login_layout/footer" %>
+</body>
+</html>
