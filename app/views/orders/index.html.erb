@@ -1,38 +1,50 @@
-<h1>Listing orders</h1>
+<%= content_for :header do %>
+  Orders 
+<% end %>
+<%= content_for :sub_header do %>
+  <li class="active"> Listing Orders </li>
+<% end %>
+<%= content_for :add_btn do %>
+  <%= link_to new_order_path , class: "btn border-danger-300 text-danger-300 btn-flat btn-rounded btn-icon btn-sm has-text" do %>
+    <i class="icon-plus3"></i>
+  <% end %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Dinning table</th>
-      <th>User</th>
-      <th>No of person</th>
-      <th>Bill amount</th>
-      <th>Discount</th>
-      <th>Payable amount</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= render '/users/base/page_header' %>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.dinning_table_id %></td>
-        <td><%= order.user.email %></td>
-        <td><%= order.no_of_person %></td>
-        <td><%= order.bill_amount %></td>
-        <td><%= order.discount %></td>
-        <td><%= order.paid_amount %></td>
-        <td><%= link_to 'Pay', pay_bill_path(:order_id=>order.id) %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body table-width">
+      <table class="table datatable-basic">
+        <thead>
+          <tr id="sort_data">
+            <th><b>Dinning table</b></th>
+            <th><b>User</b></th>
+            <th><b>No of person</b></th>
+            <th><b>Bill amount</b></th>
+            <th><b>Discount</b></th>
+            <th><b>Payable amount</b></th>
+            <th class ="text-center" id="list_action"><b>Action</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.dinning_table_id %></td>
+              <td><%= order.user.email %></td>
+              <td><%= order.no_of_person %></td>
+              <td><%= order.bill_amount %></td>
+              <td><%= order.discount %></td>
+              <td><%= order.paid_amount %></td>
+              <td><%= link_to 'Pay', pay_bill_path(:order_id=>order.id) %>
+              <%= link_to 'Show', order %>
+              <%= link_to 'Edit', edit_order_path(order) %>
+              <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<br>
-
-<%= link_to 'New Order', new_order_path %>
