@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  belongs_to :user_type
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +8,9 @@ class User < ActiveRecord::Base
   ## Associations ##      
 
   has_many :authentication_tokens
+  belongs_to :user_type
+  has_one :order
+
 
   ##instance methods##
 
@@ -28,4 +29,7 @@ class User < ActiveRecord::Base
     "Username or Password is not valid"
   end 
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end  
 end
