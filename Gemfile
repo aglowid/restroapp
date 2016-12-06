@@ -40,6 +40,8 @@ gem "gritter", "1.2.0"
 gem "font-awesome-rails"
 gem 'bootstrap-glyphicons'
 gem "iconv", "~> 1.0.3"
+gem 'wicked_pdf'
+#gem 'wkhtmltopdf-binary'
 
 
 # Use ActiveModel has_secure_password

@@ -24,8 +24,10 @@ Restroapp::Application.routes.draw do
 
   post 'get_food_price' => 'orders#get_food_price'
   get 'pay_bill' => 'orders#pay_bill'
+
   post 'pay_bill_update' => 'orders#pay_bill_update'
 
+  get 'daily_report' => 'orders#daily_report'
 
     namespace :api, :defaults => {:format => 'json'} do
     scope :module => :v1 do

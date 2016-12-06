@@ -77,6 +77,45 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  def daily_report
+
+    @orders = Order.where("DATE(created_at) = ?", Date.today)
+    @total = Order.where("DATE(created_at) = ?", Date.today).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+
+
+    #@total = {}
+    #@orders.each do |order|
+    #  if @total["no_of_person"]
+    #    @total["no_of_person"] = @total["no_of_person"] + order.no_of_person
+    #  else
+    #    @total["no_of_person"] = order.no_of_person
+    #  end
+    #  if @total["bill_amount"]
+    #    @total["bill_amount"] = @total["bill_amount"] + order.bill_amount.to_f
+    #  else
+    #    @total["bill_amount"] = order.bill_amount.to_f
+    #  end
+    #  if @total["discount"]
+    #    @total["discount"] = @total["discount"] + order.discount.to_f
+    #  else
+    #    @total["discount"] = order.discount.to_f
+    #  end
+    #  if @total["paid_amount"]
+    #    @total["paid_amount"] = @total["paid_amount"] + order.paid_amount.to_f
+    #  else
+    #    @total["paid_amount"] = order.paid_amount.to_f
+    #  end
+
+    #end
+
+    p "444444444444444444444444444444"
+    p @total.first.total_no_of_person
+    p "444444444444444444444444444444"
+
+    respond_with(@orders)
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
