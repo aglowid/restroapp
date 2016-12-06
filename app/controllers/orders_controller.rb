@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-
+    @order.order_items.build 
     @dinning_table = DinningTable.all.map{|table| [table.table_no, table.id]}
     @users = User.all.map{|user| [user.email, user.id]}
 
@@ -46,6 +46,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:dinning_table_id, :user_id, :no_of_person, :bill_amount)
+      params.require(:order).permit(:dinning_table_id, :user_id, :no_of_person, :bill_amount, order_items_attributes: [:food_id, :qty] )
     end
 end
