@@ -1,66 +1,80 @@
-<%= nested_form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= nested_form_for @order ,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :dinning_table_id %><br>
-    <%= f.select :dinning_table_id, options_for_select(@dinning_table) %>
-  </div>
+              <div class="form-group">
+                <%= f.label :dinning_table_id %>
+                <%= f.select :dinning_table_id, options_for_select(@dinning_table) , {:prompt => " Select table" } , class: "form-control"  %>     
+              </div>
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.select :user_id, options_for_select(@users) %>
-  </div>
+              <div class="form-group">
+                <%= f.label :user_id ,"Waiter"%>
+                <%= f.select :user_id, options_for_select(@users) , {:prompt => " Select Waiter" } , class: "form-control"  %>     
+              </div>
 
-  <div class="field">
-    <%= f.label :no_of_person %><br>
-    <%= f.number_field :no_of_person %>
-  </div>
 
-  
-    <%= f.fields_for :order_items do |order_item| %>
-    <div class="field">
-      Select Food: <%= order_item.select :food_id , Food.all.pluck(:name,:id),{}, { :class => 'food_select_bx' }%>
-      Qty :<%= order_item.select :qty , 1..100, {}, { :class => 'qty_select_bx' } %>
+              <div class="form-group">
+                <%= f.label :no_of_person %>
+                <%= f.number_field :no_of_person , class: "form-control"%>
+              </div>
 
+     <!--          <%= f.fields_for :order_items do |order_item| %>
+                <div class="form-group">
+                  <%= order_item.label :food_id ,"Select Food" %>
+                  <%= order_item.select :food_id , Food.all.pluck(:name,:id),{}, { :class => 'food_select_bx' }%>
+                </div>  
+                Qty :<%= order_item.select :qty , 1..100, {}, { :class => 'qty_select_bx' } %>
+
+                </div>
+                <%= order_item.link_to_remove "Remove this item" %>
+              <% end %>
+              <p><%= f.link_to_add "Add order item", :order_items %></p> -->
+
+              <div class="form-group">
+                <%= f.label :bill_amount %>
+                <%= f.text_field :bill_amount , class: "form-control"%>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :discount %>
+                <%= f.text_field :discount, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :paid_amount %>
+                <%= f.text_field :paid_amount , class: "form-control"%>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :is_paid, :class => "mrg-rght" %>
+                <label class="switch mrg-btm">
+                  <%= f.check_box :is_paid, class: "form-control" %>
+                  <div class="slider round"></div>
+                </label>  
+              </div>
+
+
+          <div class="actions">
+            <div class="row">
+              <div class="col-lg-6">
+                <%= f.submit :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner width120" %>
+
+              </div>
+            </div>
+          </div>
+ 
+
+          <!-- </div> -->
+          <% end %>
+        </div>
       </div>
-      <%= order_item.link_to_remove "Remove this item" %>
-    <% end %>
-    <p><%= f.link_to_add "Add order item", :order_items %></p>
-
-  <div class="field">
-    <%= f.label :bill_amount %><br>
-    <%= f.text_field :bill_amount %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :discount %><br>
-    <%= f.text_field :discount %>
-  </div>
-
-  <div class="field">
-    <%= f.label :paid_amount %><br>
-    <%= f.text_field :paid_amount %>
-  </div>
-
-  <div class="field">
-    <%= f.label :is_paid %><br>
-    <%= f.check_box :is_paid %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
 
 
 <script>
