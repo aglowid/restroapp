@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:edit, :update, :destroy]
+  before_action :set_data
 
   respond_to :html
 
@@ -16,9 +17,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order.order_items.build 
-    @dinning_table = DinningTable.all.map{|table| [table.table_no, table.id]}
-    @users = User.all.map{|user| [user.email, user.id]}
-
     respond_with(@order)
   end
 
@@ -46,7 +44,12 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
 
+    def set_data
+      @dinning_table = DinningTable.all.map{|table| [table.table_no, table.id]}
+      @users = User.all.map{|user| [user.email, user.id]}
+    end  
+
     def order_params
-      params.require(:order).permit(:dinning_table_id, :user_id, :no_of_person, :bill_amount, order_items_attributes: [:food_id, :qty] )
+      params.require(:order).permit(:dinning_table_id, :user_id, :no_of_person, :bill_amount, order_items_attributes: [:id, :food_id, :qty, :_destroy] )
     end
 end
