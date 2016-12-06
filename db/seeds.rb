@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-user_type = UserType.create([{:name =>"Admin"}, {:name =>"Waitor"}, {:name =>"Manager"}])
+user_type = UserType.create([{:name =>"Admin"}, {:name =>"Waiter"}, {:name =>"Manager"}])
