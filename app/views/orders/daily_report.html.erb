@@ -1,0 +1,50 @@
+<%= content_for :header do %>
+  Daily report
+<% end %>
+<%= content_for :sub_header do %>
+  <li class="active"> Daily report </li>
+<% end %>
+
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body table-width">
+      <table class="table datatable-basic">
+        <thead>
+        <tr id="sort_data">
+          <th><b>Dinning table</b></th>
+          <th><b>User</b></th>
+          <th><b>No of person</b></th>
+          <th><b>Bill amount</b></th>
+          <th><b>Discount</b></th>
+          <th><b>Payable amount</b></th>
+          <th><b>is amount paid</b></th>
+          <!--<th><b></b></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.dinning_table_id %></td>
+            <td><%= order.user.email %></td>
+            <td><%= order.no_of_person %></td>
+            <td><%= order.bill_amount %></td>
+            <td><%= order.discount %></td>
+            <td><%= order.paid_amount %></td>
+            <td><%= order.is_paid %></td>
+          </tr>
+        <% end %>
+
+        </tbody>
+        <tr>
+          <td>Total</td>
+          <td><%=  %></td>
+          <td><%=  @total.first.total_no_of_person %></td>
+          <td><%=  @total.first.total_bill_amount %></td>
+          <td><%=  @total.first.total_discount %></td>
+          <td><%=  @total.first.total_paid_amount %></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
