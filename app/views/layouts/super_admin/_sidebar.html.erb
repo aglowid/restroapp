@@ -27,45 +27,70 @@
 					<!-- Main -->
 					<li class="<%#=active_class(super_admin_dashboard_index_path)%>" ><a href="<%#=super_admin_dashboard_index_path%>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
 
-					<li id="business">
-						<a href="#" id="business-link" class="has-ul"><i class="icon-stack2"></i> <span>Businesses	</span></a>
-						<ul>
-							<!-- <li class="<%#=active_class(super_admin_locations_path)%>"><a href="<%#= super_admin_locations_path %>">Suggested Businesses</a></li> -->
-							<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Free"))%>">
-								<a href="<%#= super_admin_locations_path(:tier_name=>"Free") %>" >Free Businesses</a>
-							</li>
-							<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Standard")) %>"><a href="<%#= super_admin_locations_path(:tier_name=>"Standard") %>">Standard Businesses</a></li>
-							<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Advanced")) %>"><a href="<%#= super_admin_locations_path(:tier_name=>"Advanced") %>" >Advanced Businesses</a></li>
-							<li class="<%#=active_class(all_location_super_admin_locations_path)%>"><a href="<%#= all_location_super_admin_locations_path %>">All Businesses</a></li>
-							<li class="<%#=active_class(unclaimed_business_super_admin_locations_path)%>"><a href="<%#= unclaimed_business_super_admin_locations_path %>">Other Businesses</a></li>
-							<!-- <li class="<%#=active_class(new_super_admin_user_path)%>"><a href="<%#= new_super_admin_user_path %>">Add Businesses</a></li> -->
-						</ul>
-					</li>
-					<li class="<%#=active_class(super_admin_games_path)%>">
-						<a href="<%#=super_admin_games_path%>"><i class="icon-calculator4"></i><span>Games</span></a>
-					</li>
-					<li class="<%#=active_class(super_admin_leaderboard_index_path)%>">
-						<a href="<%#=super_admin_leaderboard_index_path%>"><i class="icon-width"></i><span>Leaderboard</span></a>
-					</li>
-					<li id="notification" class="<%#=active_class(super_admin_admin_notifications_path)%>">
-						<a href="<%#=super_admin_admin_notifications_path%>" id="notification-link" class="has-ul"><i class="icon-list"></i><span>Notifications</span></a>
+					<!--<li id="business">-->
+						<!--<a href="#" id="business-link" class="has-ul"><i class="icon-stack2"></i> <span>Admin	</span></a>-->
+						<!--<ul>-->
+							<!--&lt;!&ndash; <li class="<%#=active_class(super_admin_locations_path)%>"><a href="<%#= super_admin_locations_path %>">Suggested Businesses</a></li> &ndash;&gt;-->
+							<!--<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Free"))%>">-->
+								<!--<a href="<%#= super_admin_locations_path(:tier_name=>"Free") %>" >Tables</a>-->
+							<!--</li>-->
+							<!--<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Standard")) %>"><a href="<%= food_categories_path %>">Food Categories</a></li>-->
+							<!--<li class="<%#=active_class(super_admin_locations_path(:tier_name=>"Advanced")) %>"><a href="<%#= super_admin_locations_path(:tier_name=>"Advanced") %>" >Food Types</a></li>-->
+							<!--<li class="<%#=active_class(all_location_super_admin_locations_path)%>"><a href="<%#= all_location_super_admin_locations_path %>">Food Labels</a></li>-->
+							<!--<li class="<%#=active_class(unclaimed_business_super_admin_locations_path)%>"><a href="<%#= unclaimed_business_super_admin_locations_path %>">Foods</a></li>-->
+							<!--&lt;!&ndash; <li class="<%#=active_class(new_super_admin_user_path)%>"><a href="<%#= new_super_admin_user_path %>">Add Businesses</a></li> &ndash;&gt;-->
+						<!--</ul>-->
+					<!--</li>-->
+
+
+
+          <li class="<%= active_class(orders_path) %>">
+            <a href="<%= orders_path %>"><i class="icon-stack2"></i><span>Orders</span></a>
+          </li>
+
+          <li class="<%= active_class(dinning_tables_path) %>">
+            <a href="<%= dinning_tables_path %>"><i class="icon-stack2"></i><span>Table</span></a>
+          </li>
+
+          <li class="<%= active_class(food_categories_path) %>">
+            <a href="<%= food_categories_path %>"><i class="icon-stack2"></i><span>Food Categories</span></a>
+          </li>
+
+          <li class="<%= active_class(food_types_path) %>">
+            <a href="<%= food_types_path %>"><i class="icon-stack2"></i><span>Food Types</span></a>
+          </li>
+
+          <li class="<%= active_class(food_labels_path) %>">
+            <a href="<%= food_labels_path %>"><i class="icon-stack2"></i><span>Food Labels</span></a>
+          </li>
+
+          <li class="<%= active_class(foods_path) %>">
+            <a href="<%= foods_path %>"><i class="icon-stack2"></i><span>Food</span></a>
+          </li>
+
+
+          <!--<li class="<%= active_class(orders_path) %>">-->
+            <!--<a href="<%= orders_path %>"><i class="icon-stack2"></i><span>Orders</span></a>-->
+          <!--</li>-->
+
+
+          <li id="notification" class="<%#=active_class(super_admin_admin_notifications_path)%>">
+						<a href="<%#=super_admin_admin_notifications_path%>" id="notification-link" class="has-ul"><i class="icon-list"></i><span>Reports</span></a>
 						<ul>
 							<li class="<%#= active_class(super_admin_admin_notifications_path(:notification_type =>"past")) %>">
-								<a href="<%#= super_admin_admin_notifications_path(:notification_type =>"past") %>">Past</a>
+								<a href="<%#= super_admin_admin_notifications_path(:notification_type =>"past") %>">Daily</a>
 							</li>
 							<li class="<%#= active_class(super_admin_admin_notifications_path(:notification_type =>"upcoming")) %>">
-								<a href="<%#= super_admin_admin_notifications_path(:notification_type =>"upcoming") %>">Upcoming</a>
+								<a href="<%#= super_admin_admin_notifications_path(:notification_type =>"upcoming") %>">Weekly</a>
 							</li>
 							<li class="<%#= active_class(super_admin_admin_notifications_path) %>">
-								<a href="<%#= super_admin_admin_notifications_path %>">All</a>
+								<a href="<%#= super_admin_admin_notifications_path %>">Monthly</a>
 							</li>
 						</ul>
 					</li>
 
 
-					<li class="<%#= active_class(super_admin_general_reports_path) %>">
-						<a href="<%#= super_admin_general_reports_path %>"><i class="icon-stack2"></i><span>Reports</span></a>
-					</li>
+
 					<!-- /main -->
 				</ul>
 			</div>
