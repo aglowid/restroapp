@@ -22,6 +22,11 @@ Restroapp::Application.routes.draw do
   root 'home#index'
   get "api_help/index"
 
+  post 'get_food_price' => 'orders#get_food_price'
+  get 'pay_bill' => 'orders#pay_bill'
+  post 'pay_bill_update' => 'orders#pay_bill_update'
+
+
     namespace :api, :defaults => {:format => 'json'} do
     scope :module => :v1 do
       post 'sign_up' => 'users#sign_up',:as => :signup

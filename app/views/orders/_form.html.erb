@@ -29,9 +29,10 @@
   
     <%= f.fields_for :order_items do |order_item| %>
     <div class="field">
-      Select Food: <%= order_item.select :food_id , Food.all.pluck(:name,:id) %>
-      Qty :<%= order_item.select :qty , 1..100 %>
-      </div>  
+      Select Food: <%= order_item.select :food_id , Food.all.pluck(:name,:id),{}, { :class => 'food_select_bx' }%>
+      Qty :<%= order_item.select :qty , 1..100, {}, { :class => 'qty_select_bx' } %>
+
+      </div>
       <%= order_item.link_to_remove "Remove this item" %>
     <% end %>
     <p><%= f.link_to_add "Add order item", :order_items %></p>
@@ -40,7 +41,92 @@
     <%= f.label :bill_amount %><br>
     <%= f.text_field :bill_amount %>
   </div>
+
+  <div class="field">
+    <%= f.label :discount %><br>
+    <%= f.text_field :discount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :paid_amount %><br>
+    <%= f.text_field :paid_amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_paid %><br>
+    <%= f.check_box :is_paid %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script>
+
+  $(".food_select_bx").live("change", function(){
+    var food_id = $(this).val();
+    var id = this.id;
+    var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
+    var qty_id = "order_order_items_attributes_"+id_number+"_qty";
+    var qty = $("#"+ qty_id).val();
+    $.ajax({
+      url: "/get_food_price",
+      type: "POST",
+      contentType:"application/json",
+      data: JSON.stringify({food_id:food_id}),
+      success:function(data){
+        $("#"+id).parent().find( "span" ).remove();
+        $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
+        calculate_total_price();
+      }
+    });
+  });
+
+  $(".qty_select_bx").live("change", function(){
+    var food_id = $(this).prev().val();
+    var id = $(this).prev()[0].id;
+    var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
+    var qty_id = "order_order_items_attributes_"+id_number+"_qty";
+    var qty = $("#"+ qty_id).val();
+    $.ajax({
+      url: "/get_food_price",
+      type: "POST",
+      contentType:"application/json",
+      data: JSON.stringify({food_id:food_id}),
+      success:function(data){
+        $("#"+id).parent().find( "span" ).remove();
+        $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
+        calculate_total_price();
+      }
+    });
+  });
+
+  function calculate_total_price(){
+    var total_price = 0;
+    for (i = 0; i < $(".food_price").length; i++) {
+      total_price = parseFloat(total_price) + parseFloat($(".food_price").eq(i).text());
+    }
+    $("#order_bill_amount").val(total_price);
+    var discount = $("#order_discount").val();
+    if(discount){
+      $("#order_paid_amount").val(total_price-parseFloat(discount));
+    }else{
+      $("#order_paid_amount").val(total_price);
+    }
+  }
+
+  $("#order_discount").live("keyup", function(){
+    var discount = $("#order_discount").val();
+    var bill_amount = $("#order_bill_amount").val();
+    var paid_amount = (parseFloat(bill_amount) - parseFloat(discount));
+
+    if (discount){
+      $("#order_paid_amount").val(paid_amount);
+    }else{
+      $("#order_paid_amount").val(bill_amount);
+    }
+  });
+
+</script>
