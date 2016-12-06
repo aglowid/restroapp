@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dinning table:</strong>
+  <%= @order.dinning_table_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user_id %>
+</p>
+
+<p>
+  <strong>No of person:</strong>
+  <%= @order.no_of_person %>
+</p>
+
+
+<% @order.order_items.each do |order_item| %>
+  <p>
+    <strong>Order Item name:</strong>
+    <%= order_item.food.name %>
+
+    <strong>qty:</strong>
+    <%= order_item.qty %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Bill amount:</strong>
+  <%= @order.bill_amount %>
+</p>
+
+<%= form_tag pay_bill_update_path do %>
+
+  <%= hidden_field_tag 'order_id',@order.id  %>
+  <%= label_tag :discount %>
+  <%= number_field_tag :discount, @order.discount %>
+
+  <br><br>
+  <%= label_tag :paid_amount %>
+  <%= number_field_tag :paid_amount,@order.paid_amount  %>
+  <br><br>
+  <%= submit_tag "Forward" %>
+
+<% end %>
+
+<script>
+  $("#discount").live("keyup", function(){
+    var discount = $("#discount").val();
+    var bill_amount = "<%= @order.bill_amount %>";
+    var paid_amount = (parseFloat(bill_amount) - parseFloat(discount));
+
+    if (discount){
+      $("#paid_amount").val(paid_amount);
+    }else{
+      $("#paid_amount").val(bill_amount);
+    }
+  });
+
+</script>

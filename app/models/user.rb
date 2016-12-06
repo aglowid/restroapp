@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :authentication_tokens
   belongs_to :user_type
-  has_one :order
+  has_many :order
 
 
   ##instance methods##

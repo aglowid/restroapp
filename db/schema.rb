@@ -11,51 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205102337) do
+ActiveRecord::Schema.define(version: 20161206073757) do
 
-  create_table "authentication_tokens", force: true do |t|
-    t.integer  "user_id"
-    t.string   "auth_token"
+  create_table "authentication_tokens", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "auth_token", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "authentication_tokens", ["user_id"], name: "index_authentication_tokens_on_user_id", using: :btree
 
-  create_table "dinning_tables", force: true do |t|
-    t.integer  "table_no"
-    t.integer  "max_seat"
+  create_table "dinning_tables", force: :cascade do |t|
+    t.integer  "table_no",     limit: 4
+    t.integer  "max_seat",     limit: 4
     t.boolean  "is_available"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "food_categories", force: true do |t|
-    t.string   "name"
+  create_table "food_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "food_labels", force: true do |t|
-    t.string   "name"
+  create_table "food_labels", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "food_types", force: true do |t|
-    t.string   "name"
+  create_table "food_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "foods", force: true do |t|
-    t.string   "name"
-    t.text     "ingredients"
-    t.text     "description"
-    t.integer  "food_type_id"
-    t.integer  "food_category_id"
-    t.integer  "food_label_id"
-    t.string   "price"
+  create_table "foods", force: :cascade do |t|
+    t.string   "name",             limit: 255
+    t.text     "ingredients",      limit: 65535
+    t.text     "description",      limit: 65535
+    t.integer  "food_type_id",     limit: 4
+    t.integer  "food_category_id", limit: 4
+    t.integer  "food_label_id",    limit: 4
+    t.string   "price",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,34 +75,37 @@ ActiveRecord::Schema.define(version: 20161205102337) do
     t.string   "bill_amount",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "discount",         limit: 255
+    t.string   "paid_amount",      limit: 255
+    t.boolean  "is_paid"
   end
 
-  create_table "user_types", force: true do |t|
-    t.string   "name"
+  create_table "user_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "device_type"
-    t.string   "device_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "contact_no"
-    t.string   "gender"
-    t.integer  "user_type_id"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "device_type",            limit: 255
+    t.string   "device_token",           limit: 255
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "contact_no",             limit: 255
+    t.string   "gender",                 limit: 255
+    t.integer  "user_type_id",           limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
