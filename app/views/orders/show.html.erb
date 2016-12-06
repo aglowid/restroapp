@@ -20,5 +20,15 @@
   <%= @order.bill_amount %>
 </p>
 
+<% @order.order_items.each do |order_item| %>
+	<p>
+	  <strong>Order Item name:</strong>
+	  <%= order_item.food.name %>
+
+	  <strong>qty:</strong>
+	  <%= order_item.qty %>
+	</p>
+<% end %>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

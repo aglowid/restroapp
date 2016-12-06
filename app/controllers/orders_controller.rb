@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.includes(order_items: :food).find(params[:id])
     respond_with(@order)
   end
 
