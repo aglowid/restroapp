@@ -66,8 +66,6 @@
               </div>
             </div>
           </div>
- 
-
           <!-- </div> -->
           <% end %>
         </div>
@@ -79,68 +77,76 @@
 
 <script>
 
-  $(".food_select_bx").on("change", function(){
-    var food_id = $(this).val();
-    var id = this.id;
-    var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
-    var qty_id = "order_order_items_attributes_"+id_number+"_qty";
-    var qty = $("#"+ qty_id).val();
-    $.ajax({
-      url: "/get_food_price",
-      type: "POST",
-      contentType:"application/json",
-      data: JSON.stringify({food_id:food_id}),
-      success:function(data){
-        $("#"+id).parent().find( "span" ).remove();
-        $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
-        calculate_total_price();
+//  $( document ).ready(function() {
+//    $(".food_select_bx").live("change", function(){
+    $(document).on('change', '.food_select_bx', function(){
+      var food_id = $(this).val();
+      var id = this.id;
+      var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
+      var qty_id = "order_order_items_attributes_"+id_number+"_qty";
+      var qty = $("#"+ qty_id).val();
+      $.ajax({
+        url: "/get_food_price",
+        type: "POST",
+        contentType:"application/json",
+        data: JSON.stringify({food_id:food_id}),
+        success:function(data){
+          $("#"+id).parent().find( "span" ).remove();
+          $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
+          calculate_total_price();
+        }
+      });
+    });
+
+//    $(".qty_select_bx").live("change", function(){
+    $(document).on('change', '.qty_select_bx', function(){
+
+      var id = "order_order_items_attributes_"+ this.id.split("order_order_items_attributes_")[1].split("_")[0] +"_food_id";
+      var food_id = $("#"+id).val();
+
+      var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
+      var qty_id = "order_order_items_attributes_"+id_number+"_qty";
+      var qty = $("#"+ qty_id).val();
+      $.ajax({
+        url: "/get_food_price",
+        type: "POST",
+        contentType:"application/json",
+        data: JSON.stringify({food_id:food_id}),
+        success:function(data){
+          $("#"+id).parent().find( "span" ).remove();
+          $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
+          calculate_total_price();
+        }
+      });
+    });
+
+    function calculate_total_price(){
+      var total_price = 0;
+      for (i = 0; i < $(".food_price").length; i++) {
+        total_price = parseFloat(total_price) + parseFloat($(".food_price").eq(i).text());
+      }
+      $("#order_bill_amount").val(total_price);
+      var discount = $("#order_discount").val();
+      if(discount){
+        $("#order_paid_amount").val(total_price-parseFloat(discount));
+      }else{
+        $("#order_paid_amount").val(total_price);
+      }
+    }
+
+//    $("#order_discount").live("keyup", function(){
+    $(document).on('keyup', '#order_discount', function(){
+      var discount = $("#order_discount").val();
+      var bill_amount = $("#order_bill_amount").val();
+      var paid_amount = (parseFloat(bill_amount) - parseFloat(discount));
+
+      if (discount){
+        $("#order_paid_amount").val(paid_amount);
+      }else{
+        $("#order_paid_amount").val(bill_amount);
       }
     });
-  });
 
-  $(".qty_select_bx").on("change", function(){
-    var food_id = $(this).prev().val();
-    var id = $(this).prev()[0].id;
-    var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
-    var qty_id = "order_order_items_attributes_"+id_number+"_qty";
-    var qty = $("#"+ qty_id).val();
-    $.ajax({
-      url: "/get_food_price",
-      type: "POST",
-      contentType:"application/json",
-      data: JSON.stringify({food_id:food_id}),
-      success:function(data){
-        $("#"+id).parent().find( "span" ).remove();
-        $("#"+id).parent().append("<span><span>Price :</span><span class='food_price'>"+ data * qty+" </span></span>");
-        calculate_total_price();
-      }
-    });
-  });
-
-  function calculate_total_price(){
-    var total_price = 0;
-    for (i = 0; i < $(".food_price").length; i++) {
-      total_price = parseFloat(total_price) + parseFloat($(".food_price").eq(i).text());
-    }
-    $("#order_bill_amount").val(total_price);
-    var discount = $("#order_discount").val();
-    if(discount){
-      $("#order_paid_amount").val(total_price-parseFloat(discount));
-    }else{
-      $("#order_paid_amount").val(total_price);
-    }
-  }
-
-  $("#order_discount").on("keyup", function(){
-    var discount = $("#order_discount").val();
-    var bill_amount = $("#order_bill_amount").val();
-    var paid_amount = (parseFloat(bill_amount) - parseFloat(discount));
-
-    if (discount){
-      $("#order_paid_amount").val(paid_amount);
-    }else{
-      $("#order_paid_amount").val(bill_amount);
-    }
-  });
+//  })
 
 </script>
