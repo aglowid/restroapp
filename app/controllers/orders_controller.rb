@@ -157,6 +157,40 @@ class OrdersController < ApplicationController
   end
 
 
+  def get_monthly_report_pdf
+
+
+    @orders = Order.where('created_at >= ?', DateTime.now.month)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@orders)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+
+
+    #respond_to do |format|
+    #  format.html
+    #  format.pdf {
+    #    render :pdf => "monthly_report",
+    #           :show_as_html=>false,
+    #           :margin => { :top => 20, :bottom => 20}
+    #  }
+    #end
+
+    #respond_to do |format|
+    #  format.html
+    #  format.pdf do
+    #    pdf = Prawn::Document.new
+    #    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+    #  end
+    #end
+
+
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
