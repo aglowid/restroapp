@@ -41,7 +41,8 @@ class FoodLabelsController < ApplicationController
 
   def destroy
     @food_label.destroy
-    respond_with(@food_label)
+    redirect_to food_labels_path ,:notice => "Food label successfully deleted."
+    #respond_with(@food_label)
   end
 
   private
