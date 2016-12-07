@@ -27,24 +27,29 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.save
-
-    dinning_table = DinningTable.find(@order.dinning_table_id) rescue nil
-    if !dinning_table.blank? && @order.is_paid == false
-      dinning_table.update_attributes(:is_available=> false)
-    end
-
-    respond_with(@order)
+    if @order.save
+      dinning_table = DinningTable.find(@order.dinning_table_id) rescue nil
+      if !dinning_table.blank? && @order.is_paid == false
+        dinning_table.update_attributes(:is_available=> false)
+      end
+      respond_with(@order)
+      flash[:notice] = "Order successfully created"
+    else
+      render :new
+      flash[:error] = @order.errors.full_messages 
+    end  
   end
 
   def update
     @order.update(order_params)
     respond_with(@order)
+    flash[:notice] = "Order successfully updated"
   end
 
   def destroy
     @order.destroy
-    respond_with(@order)
+    redirect_to orders_path ,:notice => "Order successfully deleted."
+    #respond_with(@order)
   end
 
   def get_food_price
