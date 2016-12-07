@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_data, only: [:new, :user_create, :edit]
+	before_action :set_data, only: [:new, :user_create, :edit,:update_user]
   before_action :set_user, only: [:edit, :update_user, :destroy]
 
 	def change_password

@@ -33,17 +33,41 @@
 <div class="row padding-left-18">
   <div class="col-lg-8">
     <% if flash[:notice] %>
-      <div class="alert bg-success" id="flashm">
-        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
-        </button>
-        <span class="text-semibold"><%= flash[:notice] %>
-      </div>
+      <% if flash[:notice].is_a?(Array) %>
+        <div id="flashm">
+          <% flash[:notice].each do |notice| %>
+            <div class="alert bg-success">
+              <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+              </button>
+              <span class="text-semibold"><%= notice %></span>   
+            </div>
+          <% end %>
+        </div>   
+      <% else %>
+        <div class="alert bg-success" id="flashm">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+          </button>
+          <span class="text-semibold"><%= flash[:notice] %>
+        </div>
+      <% end %>  
     <% elsif flash[:error] %>
-      <div class="alert bg-danger" id="flashm">
-        <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
-        </button>
-        <span class="text-semibold"><%= flash[:error] %>
-      </div>
+      <% if flash[:error].is_a?(Array) %>
+        <div id= "flashm">
+          <div class="alert bg-danger">
+            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+              </button>
+              <% flash[:error].each do |error| %>
+                <span class="text-semibold"><%= error %></span><br/>
+              <% end %>  
+          </div>
+        </div>  
+      <% else %>
+        <div class="alert bg-danger" id="flashm">
+          <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span>
+          </button>
+          <span class="text-semibold"><%= flash[:error] %>
+        </div>
+      <% end %>  
     <% end %>
   </div>
 </div>
