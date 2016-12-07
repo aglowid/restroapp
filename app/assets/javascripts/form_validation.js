@@ -190,9 +190,12 @@ $(function() {
           "user[email]":{
               required:true,
           },
-          "user[dob]":{
+          "dinning_table[table_no]":{
               required:true,
           },
+          "dinning_table[max_seat]":{
+              required:true,
+          },          
           "user[password]":{
             required:true,
             minlength: 6
@@ -201,60 +204,7 @@ $(function() {
             required:true,
             equalTo:"#user_password"
           },
-          "user[locations_attributes][0][name]": {
-            required: true
-          },
-          "user[locations_attributes][0][location_category_id]": {
-            required: true
-          },
-          "user[locations_attributes][0][contact_person_name]": {
-            required: true
-          },
-          "user[locations_attributes][0][contact]": {
-            required: true,
-            //digits: true
-          },
-          "user[locations_attributes][0][best_time_to_call]": {
-            required: true
-          },
-          "user[locations_attributes][0][address]": {
-            required: true
-          },
-          "user[locations_attributes][0][state_id]": {
-            required: true
-          },
-          "user[locations_attributes][0][city_id]": {
-            required: true
-          },
-          "user[locations_attributes][0][zipcode]": {
-            required: true
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_number]": {
-            required: true,
-            minlength: 16,
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][name_on_card]": {
-            required: true
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_cvv]": {
-            required: true,
-            digits: true,
-            minlength: 3,
-            maxlength: 4,
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_expiration_month]": {
-            required: true
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_expiration_year]": {
-            required: true
-          },
-          // "location_ids[]": {
-          //   required: true,
-          // },
-          // "state_ids[]": {
-          //   required: true,
-          // },
-          "admin_notification[send_date]": {
+          "user[user_type_id]": {
             required: true,
           },
           "admin_notification[message]": {
@@ -446,52 +396,15 @@ $(function() {
             minlength: 3,
             maxlength: 4,
           },
-          "card_expiration_month":{
-            required: true,
-          },
-          "card_expiration_year":{
-            required: true,
-          },
-          "notification[frequency]":{
-            required: true,
-          },
-          // "notification[send_date]":{
-          //   required: true,
-          // },
-          "notification[start_date]":{
-            required:true,
-          },
-          "notification[end_date]":{
-            required:true,
-          },
-          "send_time":{
-            required:true,
-          },
-          "notification[message]":{
-            required:true,
-          },
-          "notification[display_untill]":{
-            required: true,
-          },
-          "offer[name]": {
-            required: true,
-          },
-          "offer[start_date]": {
-            required: true,
-          },
-          "offer[end_date]": {
-            required: true,
-          },
-          "reward[name]": {
-            required: true
-          },
-          "reward[loyalty_points]": {
+          "user[contact_no]": {
             required: true,
             digits: true
           },
           "reward[per_user_per_month]": {
             required: true,
-            digits: true
+            digits: true,
+            minlength: 10,
+            maxlength: 15,
           },
           "card": {
             required: true,
@@ -549,8 +462,11 @@ $(function() {
           "user[email]":{
               required: "Email is required",
           },
-          "user[dob]":{
-              required: "Date of Birth is required",
+          "dinning_table[table_no]":{
+              required: "Table no is required",
+          },
+          "dinning_table[max_seat]":{
+              required: "Maximum seat is required",
           },
           "user[password]":{
               required: "Password is required",
@@ -560,83 +476,8 @@ $(function() {
               required: "Confirm password is required",
               equalTo: "Please enter same password again"
           },
-          "user[locations_attributes][0][name]": {
-            required: "Business name is required"
-          },
-          "user[locations_attributes][0][location_category_id]": {
-            required: "Business category is required"
-          },
-          "user[locations_attributes][0][contact_person_name]": {
-            required: "Contact person name is required"
-          },
-          "user[locations_attributes][0][contact]": {
-            required: "Contact number is required",
-            //digits: "Plese enter only digits"
-          },
-          "user[locations_attributes][0][best_time_to_call]": {
-            required: "Please select time"
-          },
-          "user[locations_attributes][0][address]": {
-            required: "Address is required"
-          },
-          "user[locations_attributes][0][state_id]": {
-            required: "State is required"
-          },
-          "user[locations_attributes][0][city_id]": {
-            required: "City is required"
-          },
-          "user[locations_attributes][0][zipcode]": {
-            required: "Zipcode is required"
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_number]": {
-            required: "Card number is required",
-            minlength: "Card number should be atleast 13 digits."
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][name_on_card]": {
-            required: "Name is required"
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_cvv]": {
-            required: "CVV number is required",
-            digits: "CVV must be a number",
-            minlength: "Please enter minimum 3 digits",
-            maxlength: "Please enter maximum 4 digits",
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_expiration_month]": {
-            required: "Expiry month is required"
-          },
-          "user[locations_attributes][0][location_cards_attributes][0][card_expiration_year]": {
-            required: "Expiry year is required"
-          },
-          // "location_ids[]": {
-          //   required: "Please select locations.",
-          // },
-          // "state_ids[]": {
-          //   required: "Please select states",
-          // },
-          "admin_notification[send_date]": {
-            required: "Please enter date and time.",
-          },
-          "admin_notification[message]": {
-            required: "Please enter message",
-          },
-          "category[name]": {
-            required: "Category name is required"
-          },
-          "city[name]":{
-            required: "City name is required",
-          },
-          "city[state_id]": {
-            required: "Please select state.",
-          },
-          "game_play_type[name]":{
-            required: "Please enter name.",
-          },
-          "game[name]": {
-            required: "Game name is required"
-          },
-          "general_game_setting[total_question_time]": {
-            required: "Total question time is required",
-            number: "Total question time must be a number",
+          "user[user_type_id]": {
+            required: "Please select user type",
           },
           "general_game_setting[points]": {
             required: "Points are required",
@@ -765,8 +606,11 @@ $(function() {
             minlength: "Please enter atleast 6 characters",
             equalTo: "Please enter same password again"
           },
-          "game_play[name]": {
-            required: "Name is required",
+          "user[contact_no]": {
+            required: "Please enter contact number",
+            digits: "Text message number must be an integer",
+            minlength: "Please enter atleast 10 digits",
+            maxlength: "Enter maximum 15 digits only",
           },
           // "recurring_type_id":{
           //   required: "Please select recurring type",

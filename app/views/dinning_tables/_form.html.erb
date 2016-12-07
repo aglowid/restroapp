@@ -1,29 +1,40 @@
-<%= form_for(@dinning_table) do |f| %>
-  <% if @dinning_table.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dinning_table.errors.count, "error") %> prohibited this dinning_table from being saved:</h2>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= form_for @dinning_table,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
 
-      <ul>
-      <% @dinning_table.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+              <div class="form-group  has-feedback">
+                <%= f.label :table_no %>
+                <%= f.number_field :table_no , class: "form-control"%>     
+              </div>
+
+              <div class="form-group  has-feedback">
+                <%= f.label :max_seat %>
+                <%= f.number_field :max_seat , class: "form-control"%>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :is_available, :class => "mrg-rght" %>
+                <label class="switch mrg-btm">
+                  <%= f.check_box :is_available, class: "form-control" %>
+                  <div class="slider round"></div>
+                </label>  
+              </div>
+
+              <div class="actions">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.submit :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner " %>
+                  </div>
+                </div>
+              </div>
+ 
+          <!-- </div> -->
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :table_no %><br>
-    <%= f.number_field :table_no %>
   </div>
-  <div class="field">
-    <%= f.label :max_seat %><br>
-    <%= f.number_field :max_seat %>
-  </div>
-  <div class="field">
-    <%= f.label :is_available %><br>
-    <%= f.check_box :is_available %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

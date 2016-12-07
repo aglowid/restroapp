@@ -22,8 +22,6 @@
           <th>Table no</th>
           <th>Max seat</th>
           <th>Is available</th>
-          <th></th>
-          <th></th>
           <th class ="text-center" id="list_action"><b>Action</b></th>
         </tr>
         </thead>
@@ -33,9 +31,17 @@
             <td><%= dinning_table.table_no %></td>
             <td><%= dinning_table.max_seat %></td>
             <td><%= dinning_table.is_available %></td>
-            <td><%= link_to 'Show', dinning_table %></td>
-            <td><%= link_to 'Edit', edit_dinning_table_path(dinning_table) %></td>
-            <td><%= link_to 'Destroy', dinning_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center">
+              <ul class="icons-list icons-list-vertical">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="icon-menu9 redicon"></i></a>
+                    
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><%= edit_link(edit_dinning_table_path(dinning_table)) %></li>
+                  <li><%= delete_link(dinning_table_path(dinning_table)) %></li>
+                </ul>
+              </ul>
+            </td>
           </tr>
         <% end %>
         </tbody>

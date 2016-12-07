@@ -22,13 +22,21 @@ class DinningTablesController < ApplicationController
 
   def create
     @dinning_table = DinningTable.new(dinning_table_params)
-    @dinning_table.save
-    respond_with(@dinning_table)
+    if @dinning_table.save
+      redirect_to dinning_tables_path ,:notice => "Dinning Table successfully created."
+    else
+      render :new
+    end  
+    #respond_with(@dinning_table)
   end
 
   def update
-    @dinning_table.update(dinning_table_params)
-    respond_with(@dinning_table)
+    if @dinning_table.update(dinning_table_params)
+      redirect_to dinning_tables_path ,:notice => "Dinning Table successfully updated."
+    else
+      render :edit
+    end 
+    #respond_with(@dinning_table)
   end
 
   def destroy

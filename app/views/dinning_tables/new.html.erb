@@ -1,5 +1,9 @@
-<h1>New dinning_table</h1>
-
+<%= content_for :header do %>
+	New Dinning Table
+<% end %>
+<%= content_for :sub_header do %>
+	<li><a href="<%= dinning_tables_path %>"> Dinning Tables </a></li>
+	<li class= "active"> New </li>
+<% end %>
+<%= render '/users/base/page_header' %>
 <%= render 'form' %>
-
-<%= link_to 'Back', dinning_tables_path %>
