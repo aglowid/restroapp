@@ -210,7 +210,7 @@ $(function() {
           "admin_notification[message]": {
             required: true,
           },
-          "category[name]": {
+          "food_category[name]": {
             required: true
           },
           "city[state_id]": {
@@ -261,48 +261,7 @@ $(function() {
             required: true,
             number: true,
           },
-          "live_trivia_general_game_setting[sub_category_id]":{
-            required: true,
-          },
-          "live_trivia_general_game_setting[level_id]":{
-            required: true,
-          },
-          "live_trivia_general_game_setting[total_question_time]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[que_read_time]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[rounds]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[points]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[result_interval_time]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[question_per_round]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[cheat_1_unlock_time]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[cheat_2_unlock_time]":{
-            required: true,
-            number: true,
-          },
-          "live_trivia_general_game_setting[cheat_3_unlock_time]":{
-            required: true,
-            number: true,
-          },
+
           "setting[search_mile]": {
             required: true,
             digits: true,
@@ -356,24 +315,7 @@ $(function() {
             minlength: 6,
             equalTo:"#user_password",
           },
-          "game_play[name]": {
-            required: true,
-          },
-          // "recurring_type_id":{
-          //   required: true,
-          // },
-          // "game_play[scheduled_time]":{
-          //   required: true,
-          // },
-          // "game_play[start_date]":{
-          //   required: true,
-          // },
-          // "game_play[end_date]":{
-          //   required: true,
-          // },
-          "game_play[category_id]": {
-            required: true,
-          },
+
           "game_play[level_id]": {
             required: true,
           },
@@ -412,39 +354,6 @@ $(function() {
           "tier": {
             required: true,
           },
-          "admin_notification[send_date]":{
-            required: true,
-          },
-          "trivia_question[game_id]":{
-            required: true,
-          },
-          "trivia_question[level_id]":{
-            required: true,
-          },
-          "trivia_question[category_id]":{
-            required: true,
-          },
-          "trivia_question[sub_category_id]":{
-            required: true,
-          },
-          "trivia_question[question]":{
-            required: true,
-          },
-          "trivia_question[answer1]":{
-            required: true,
-          },
-          "trivia_question[answer2]":{
-            required: true
-          },
-          "trivia_question[answer3]":{
-            required: true,
-          },
-          "trivia_question[answer4]":{
-            required: true,
-          },
-          "trivia_question[correct_answer]":{
-            required: true,
-          },
         },
         messages: {
           "user[locations_attributes][0][opening_hour]" :{
@@ -479,79 +388,8 @@ $(function() {
           "user[user_type_id]": {
             required: "Please select user type",
           },
-          "general_game_setting[points]": {
-            required: "Points are required",
-            digits: "Points must be an integer",
-          },
-          "general_game_setting[que_read_time]": {
-            required: "Question read time is required",
-            number: "Question read time must be a number",
-          },
-          "general_game_setting[round_interval_time]": {
-            required: "Round interval time is required",
-            number: "Round interval time must ba a number",
-          },
-          "general_game_setting[result_interval_time]": {
-            required: "Result interval time is required",
-            number: "Result interval time must be a number",
-          },
-          "general_game_setting[question_per_round]": {
-            required: "Question per round is required",
-            digits: "Question per round must be an integer",
-          },
-          "general_game_setting[cheat_1_unlock_time]": {
-            required: "Cheat 1 unlock time is required",
-            number: "Cheat 1 unlock time must be a number",
-          },
-          "general_game_setting[cheat_2_unlock_time]": {
-            required: "Cheat 2 unlock time is required",
-            number: "Cheat 2 unlock time must be a number",
-          },
-          "general_game_setting[cheat_3_unlock_time]": {
-            required: "Cheat 3 unlock time is required",
-            number: "Cheat 3 unlock time must be a number",
-          },
-          "live_trivia_general_game_setting[sub_category_id]":{
-            required: "Please select sub category",
-          },
-          "live_trivia_general_game_setting[level_id]":{
-            required: "Please select level",
-          },
-          "live_trivia_general_game_setting[total_question_time]":{
-            required: "Total question time is required",
-            number: "Total question time must be a number",
-          },
-          "live_trivia_general_game_setting[que_read_time]":{
-            required: "Question read time is required",
-            number: "Question read time must be a number",
-          },
-          "live_trivia_general_game_setting[rounds]":{
-            required: "Rounds are required",
-            number: "Rounds must be a number",
-          },
-          "live_trivia_general_game_setting[points]":{
-            required: "Points are required",
-            digits: "Points must be an integer",
-          },
-          "live_trivia_general_game_setting[result_interval_time]":{
-            required: "Result interval time is required",
-            number: "Result interval time must be a number",
-          },
-          "live_trivia_general_game_setting[question_per_round]":{
-            required: "Question per round is required",
-            digits: "Question per round must be an integer",
-          },
-          "live_trivia_general_game_setting[cheat_1_unlock_time]":{
-            required: "Cheat 1 unlock time is required",
-            number: "Cheat 1 unlock time must be a number",
-          },
-          "live_trivia_general_game_setting[cheat_2_unlock_time]":{
-            required: "Cheat 2 unlock time is required",
-            number: "Cheat 2 unlock time must be a number",
-          },
-          "live_trivia_general_game_setting[cheat_3_unlock_time]":{
-            required: "Cheat 3 unlock time is required",
-            number: "Cheat 3 unlock time must be a number",
+          "food_category[name]": {
+            required: "Please enter food category name",
           },
           "setting[search_mile]": {
             required: "Search mile is required",
