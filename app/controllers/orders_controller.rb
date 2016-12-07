@@ -158,9 +158,24 @@ class OrdersController < ApplicationController
 
 
   def get_monthly_report_pdf
+    if params["order"]
+      if !params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('created_at >= ? && dinning_table_id = ? && user_id = ?', DateTime.now.month, params["order"]["dinning_table_id"], params["order"]["user_id"])
+        @total = Order.where('created_at >= ? && dinning_table_id = ? && user_id = ?', DateTime.now.month, params["order"]["dinning_table_id"], params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif !params["order"]["dinning_table_id"].blank? && params["order"]["user_id"].blank?
+        @orders = Order.where('created_at >= ? && dinning_table_id = ?', DateTime.now.month, params["order"]["dinning_table_id"])
+        @total = Order.where('created_at >= ? && dinning_table_id = ?', DateTime.now.month, params["order"]["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('created_at >= ? && user_id = ?', DateTime.now.month, params["order"]["user_id"])
+        @total = Order.where('created_at >= ? && user_id = ?', DateTime.now.month, params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      else
+        @orders = Order.where('created_at >= ?', DateTime.now.month)
+        @total = Order.where('created_at >= ?', DateTime.now.month).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      end
 
-
-    @orders = Order.where('created_at >= ?', DateTime.now.month)
+    else
+      @orders = Order.where('created_at >= ?', DateTime.now.month)
+    end
 
     respond_to do |format|
       format.html
@@ -169,27 +184,69 @@ class OrdersController < ApplicationController
         send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
       end
     end
-
-
-    #respond_to do |format|
-    #  format.html
-    #  format.pdf {
-    #    render :pdf => "monthly_report",
-    #           :show_as_html=>false,
-    #           :margin => { :top => 20, :bottom => 20}
-    #  }
-    #end
-
-    #respond_to do |format|
-    #  format.html
-    #  format.pdf do
-    #    pdf = Prawn::Document.new
-    #    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-    #  end
-    #end
-
-
   end
+
+
+  def get_weekly_report_pdf
+    today = Date.today # Today's date
+    @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
+    @week =  (today.at_beginning_of_week..today.at_end_of_week).map.each { |day| day }
+    if params["order"]
+      if !params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) IN (?) && dinning_table_id = ? && user_id = ?', @week, params["order"]["dinning_table_id"], params["order"]["user_id"])
+        @total = Order.where('DATE(created_at) IN (?) && dinning_table_id = ? && user_id = ?', @week, params["order"]["dinning_table_id"], params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif !params["order"]["dinning_table_id"].blank? && params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) IN (?) && dinning_table_id = ?', @week, params["order"]["dinning_table_id"])
+        @total = Order.where('DATE(created_at) IN (?) && dinning_table_id = ?', @week, params["order"]["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) IN (?) && user_id = ?', @week, params["order"]["user_id"])
+        @total = Order.where('DATE(created_at) IN (?) && user_id = ?', @week, params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      else
+        @orders = Order.where('DATE(created_at) IN (?)', @week)
+        @total = Order.where('DATE(created_at) IN (?)', @week).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      end
+    else
+      @orders = Order.where('DATE(created_at) IN (?)', @week)
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = WeeklyReportPdf.new(@orders)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+  end
+
+  def get_daily_report_pdf
+    if params["order"]
+      if !params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) = ? && dinning_table_id = ? && user_id = ?', Date.today, params["order"]["dinning_table_id"], params["order"]["user_id"])
+        @total = Order.where('DATE(created_at) = ? && dinning_table_id = ? && user_id = ?', Date.today, params["order"]["dinning_table_id"], params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif !params["order"]["dinning_table_id"].blank? && params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) = ?&& dinning_table_id = ?', Date.today, params["order"]["dinning_table_id"])
+        @total = Order.where('DATE(created_at) = ?&& dinning_table_id = ?', Date.today, params["order"]["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      elsif params["order"]["dinning_table_id"].blank? && !params["order"]["user_id"].blank?
+        @orders = Order.where('DATE(created_at) = ? && user_id = ?', Date.today, params["order"]["user_id"])
+        @total = Order.where('DATE(created_at) = ? && user_id = ?', Date.today, params["order"]["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      else
+        @orders = Order.where('DATE(created_at) = ?', Date.today)
+        @total = Order.where('DATE(created_at) = ?', Date.today).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+      end
+
+    else
+      @orders = Order.where('DATE(created_at) = ?', Date.today)
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = DailyReportPdf.new(@orders)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+  end
+
 
   private
     def set_order

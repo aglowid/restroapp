@@ -42,8 +42,15 @@ $(function() {
     $('.datatable-basic').DataTable();
 
 
+//  $('.datatable-basic').DataTable( {
+//    dom: 'Bfrtip',
+//    buttons: [
+//      'copy', 'csv', 'excel', 'pdf', 'print'
+//    ]
+//  } );
+
     // Alternative pagination
-    $('.datatable-pagination').DataTable({
+    $('#monthly_report').DataTable({
         pagingType: "simple",
         language: {
             paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
