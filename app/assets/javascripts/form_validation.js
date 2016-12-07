@@ -228,6 +228,27 @@ $(function() {
             required: true,
             digits: true
           },
+          "food_type[name]":{
+            required: true,
+          },
+          "food_label[name]":{
+            required: true,
+          },
+          "food[name]":{
+            required: true,
+          },
+          "food[food_category_id]":{
+            required: true,
+          },
+          "food[food_type_id]":{
+            required: true,
+          },
+          "food[food_label_id]":{
+            required: true,
+          },
+          "food[price]":{
+            required: true,
+          },
         },
         messages: {
           "user[first_name]": {
@@ -277,6 +298,27 @@ $(function() {
             digits: "Text message number must be an integer",
             minlength: "Please enter atleast 10 digits",
             maxlength: "Enter maximum 15 digits only",
+          },
+          "food_type[name]":{
+            required: "Please enter food type name"
+          },
+          "food_label[name]":{
+            required: "Please enter food label name"
+          },
+          "food[name]":{
+            required: "Please enter food name"
+          },
+          "food[food_category_id]":{
+            required: "Please select food category"
+          },
+          "food[food_type_id]":{
+            required: "Please select food type"
+          },
+          "food[food_label_id]":{
+            required: "Please select food label"
+          },
+          "food[price]":{
+            required: "Please enter food price"
           },
           agree: "Please accept our policy"
       }

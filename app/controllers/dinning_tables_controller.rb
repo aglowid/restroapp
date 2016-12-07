@@ -41,6 +41,7 @@ class DinningTablesController < ApplicationController
 
   def destroy
     @dinning_table.destroy
+    redirect_to dinning_tables_path ,:notice => "Dinning Table successfully deleted."
     respond_with(@dinning_table)
   end
 
