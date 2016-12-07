@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 			redirect_to users_path ,:notice => "user successfully created."
 		else
 		  render :new 
-      flash[:error] = @user.display_errors
+      #flash[:error] = @user.display_errors
 		end	
 	end	
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 			redirect_to users_path ,:notice => "user successfully updated."
 		else
 		  render :new 
-      flash[:error] = @user.display_errors
+      #flash[:error] = @user.display_errors
 		end	
 	end	
 

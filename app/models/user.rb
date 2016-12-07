@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :order
 
   ## Validations ##
-  validates_presence_of :first_name, :user_type_id
-  validates :contact_no,   :presence => {:message => 'Invalid contact no'},
+  validates_presence_of :first_name, :user_type
+  validates :contact_no,  :presence => {:message => 'Invalid contact no'},
                      :numericality => true,
                      :length => { :minimum => 10, :maximum => 15 }
 
