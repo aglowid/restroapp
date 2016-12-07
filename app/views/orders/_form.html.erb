@@ -77,8 +77,6 @@
 
 <script>
 
-//  $( document ).ready(function() {
-//    $(".food_select_bx").live("change", function(){
     $(document).on('change', '.food_select_bx', function(){
       var food_id = $(this).val();
       var id = this.id;
@@ -98,7 +96,6 @@
       });
     });
 
-//    $(".qty_select_bx").live("change", function(){
     $(document).on('change', '.qty_select_bx', function(){
 
       var id = "order_order_items_attributes_"+ this.id.split("order_order_items_attributes_")[1].split("_")[0] +"_food_id";
@@ -134,7 +131,6 @@
       }
     }
 
-//    $("#order_discount").live("keyup", function(){
     $(document).on('keyup', '#order_discount', function(){
       var discount = $("#order_discount").val();
       var bill_amount = $("#order_bill_amount").val();
@@ -146,7 +142,5 @@
         $("#order_paid_amount").val(bill_amount);
       }
     });
-
-//  })
 
 </script>
