@@ -195,7 +195,7 @@ $(function() {
           },
           "dinning_table[max_seat]":{
               required:true,
-          },          
+          },        
           "user[password]":{
             required:true,
             minlength: 6
@@ -205,6 +205,9 @@ $(function() {
             equalTo:"#user_password"
           },
           "user[user_type_id]": {
+            required: true,
+          },
+          "order[order_items_attributes][0][food_id]": {
             required: true,
           },
           "food_category[name]": {
@@ -256,6 +259,10 @@ $(function() {
           "food_category[name]": {
             required: "Please enter food category name",
           },
+          "order[order_items_attributes][0][food_id]": {
+            required: "Please select food item",
+          },
+
           "user[current_password]": {
             required: "Current password is required",
             minlength: "Please enter atleast 6 characters"
