@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
         dinning_table.update_attributes(:is_available=> false)
       end
       respond_with(@order)
+      flash[:notice] = "Order successfully created"
     else
       render :new
       flash[:error] = @order.errors.full_messages 
@@ -42,11 +43,12 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
     respond_with(@order)
+    flash[:notice] = "Order successfully updated"
   end
 
   def destroy
     @order.destroy
-    redirect_to orders_path ,:notice => "order successfully deleted."
+    redirect_to orders_path ,:notice => "Order successfully deleted."
     #respond_with(@order)
   end
 
