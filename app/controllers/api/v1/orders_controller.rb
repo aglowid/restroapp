@@ -19,6 +19,9 @@ class Api::V1::OrdersController < Api::V1::BaseController
     @order.user_id = @current_user.id
     unless @order.save
       render_json({:result=>{:messages => @order.display_errors, :rstatus=>0, :errorcode => 404}}.to_json)
+    else
+      order_items = @order.order_items.joins(:food).select("*,sum(qty*foods.price) as total_amount")
+      @order.bill_amount = order_items.first.total_amount  
     end
   end	
 

@@ -6,7 +6,7 @@ end
 json.data do
   json.order_id           @order.id
   json.dinning_table_id   @order.dinning_table_id
-  json.dinning_table_no   @order.dinning_table.table_no
+  json.dinning_table_no   @order.dinning_table.try(:table_no)
   json.waiter             @order.user.try(:full_name)
   json.no_of_person       @order.no_of_person
   json.bill_amount  @order.bill_amount
