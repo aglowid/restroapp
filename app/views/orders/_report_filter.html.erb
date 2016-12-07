@@ -6,11 +6,17 @@
 <% end %>
 
 <% if params["action"] == "get_monthly_report" %>
-  <%= link_to "Export", get_monthly_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer", :target => "_blank" , :id=>"trip_index_print_btn" %>
+  <div class="content" style="float: right;margin-top: -37px;">
+    <%= link_to "Export", get_monthly_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer btn btn-danger" , :id=>"trip_index_print_btn" %>
+  </div>
 <% elsif params["action"] == "get_weekly_report"  %>
-  <%= link_to "Export", get_weekly_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer", :target => "_blank" , :id=>"trip_index_print_btn" %>
+  <div class="content" style="float: right;margin-top: -37px;">
+    <%= link_to "Export", get_weekly_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer btn btn-danger", :id=>"trip_index_print_btn" %>
+  </div>
 <% elsif params["action"] == "get_daily_report"  %>
-  <%= link_to "Export", get_daily_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer", :target => "_blank" , :id=>"trip_index_print_btn" %>
+  <div class="content" style="float: right;margin-top: -37px;">
+    <%= link_to "Export", get_daily_report_pdf_path(:format => "pdf", :order=>params["order"]), :class=>"icon-thin-0333_printer btn btn-danger", :id=>"trip_index_print_btn" %>
+  </div>
 <% end %>
 
 <div class="content">
