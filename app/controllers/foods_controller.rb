@@ -22,17 +22,28 @@ class FoodsController < ApplicationController
   end
 
   def edit
+    @food_category = FoodCategory.all.map{|f_category| [f_category.name, f_category.id]}
+    @food_type = FoodType.all.map{|f_type| [f_type.name, f_type.id]}
+    @food_label = FoodLabel.all.map{|f_label| [f_label.name, f_label.id]}
   end
 
   def create
     @food = Food.new(food_params)
-    @food.save
-    respond_with(@food)
+
+    if @food.save
+      redirect_to foods_path ,:notice => "Food successfully create."
+    else
+      render :new
+    end
   end
 
   def update
     @food.update(food_params)
-    respond_with(@food)
+    if @food.save
+      redirect_to foods_path ,:notice => "Food successfully updated."
+    else
+      render :new
+    end
   end
 
   def destroy

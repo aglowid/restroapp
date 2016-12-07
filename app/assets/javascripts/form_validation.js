@@ -213,99 +213,7 @@ $(function() {
           "food_category[name]": {
             required: true
           },
-          "city[state_id]": {
-            required: true
-          },
-          "city[name]": {
-            required: true
-          },
-          "game_play_type[name]":{
-            required: true
-          },
-          "game[name]": {
-            required: true
-          },
-          "general_game_setting[total_question_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[points]": {
-            required: true,
-            digits: true,
-          },
-          "general_game_setting[que_read_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[round_interval_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[result_interval_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[question_per_round]": {
-            required: true,
-            digits: true,
-          },
-          "general_game_setting[cheat_1_unlock_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[cheat_2_unlock_time]": {
-            required: true,
-            number: true,
-          },
-          "general_game_setting[cheat_3_unlock_time]": {
-            required: true,
-            number: true,
-          },
 
-          "setting[search_mile]": {
-            required: true,
-            digits: true,
-          },
-          "setting[time_zone]": {
-            required: true,
-          },
-          "setting[per_minute_loyalty_points]": {
-            required: true,
-            number: true,
-          },
-          "social_media_point[social_media_name]": {
-            required: true,
-          },
-          "social_media_point[check_in_credits]": {
-            required: true,
-            number: true,
-          },
-          "social_media_point[loyalty_points]": {
-            required: true,
-            number: true,
-          },
-          "state[name]": {
-            required: true
-          },
-          "tier[name]": {
-            required: true
-          },
-          "tier[charge]": {
-            required: true,
-            number: true
-          },
-          "tier[number_of_pn]": {
-            required: true,
-            digits: true
-          },
-          "tier[text_message]": {
-            required: true,
-            digits: true,
-          },
-          "tier[email]": {
-            required: true,
-            digits: true
-          },
           "user[current_password]": {
             required: true,
             minlength: 6
@@ -316,40 +224,12 @@ $(function() {
             equalTo:"#user_password",
           },
 
-          "game_play[level_id]": {
-            required: true,
-          },
-          "game_play[starts_in]": {
-            required: true,
-            number: true,
-            min: 1,
-          },
-          "name_on_card":{
-            required: true,
-          },
-          "card_number":{
-            required: true,
-            // digits: true,
-            minlength: 16,
-          },
-          "card_cvv":{
-            required: true,
-            digits: true,
-            minlength: 3,
-            maxlength: 4,
-          },
           "user[contact_no]": {
             required: true,
             digits: true
           },
         },
         messages: {
-          "user[locations_attributes][0][opening_hour]" :{
-            required: "Opening hour is required",
-          },
-          "user[locations_attributes][0][closing_hour]" :{
-            required: "Closing hour is required",
-          },
           "user[first_name]": {
               required: "First name is required",
           },
@@ -382,6 +262,7 @@ $(function() {
           "order[order_items_attributes][0][food_id]": {
             required: "Please select food item",
           },
+
           "user[current_password]": {
             required: "Current password is required",
             minlength: "Please enter atleast 6 characters"
@@ -396,115 +277,6 @@ $(function() {
             digits: "Text message number must be an integer",
             minlength: "Please enter atleast 10 digits",
             maxlength: "Enter maximum 15 digits only",
-          },
-          "game_play[category_id]": {
-            required: "Please select category",
-          },
-          "game_play[level_id]": {
-            required: "Please select level",
-          },
-          "game_play[starts_in]": {
-            required: "Starts in is required",
-            number: "Starts in must be a number",
-            min: "Please enter a value greater than or equal to 1",
-          },
-          "name_on_card": {
-            required: "Name is required"
-          },
-          "card_number":{
-            required: "Card number is required",
-          },
-          "card_cvv": {
-            required: "CVV number is required",
-            digits: "CVV must be a number",
-            minlength: "Please enter minimum 3 digits",
-            maxlength: "Enter maximum 4 digits only",
-          },
-          "card_expiration_month": {
-            required: "Please select expiration month"
-          },
-          "card_expiration_year": {
-            required: "Please select expiration year"
-          },
-          "notification[frequency]":{
-            required: "Please select frequency",
-          },
-          // "notification[send_date]":{
-          //   required: "Send date is required",
-          // },
-          "notification[message]":{
-            required:"Please enter message",
-          },
-          "notification[display_untill]":{
-            required: "Display untill is required",
-          },
-          "notification[start_date]":{
-            required: "Please select start date",
-          },
-          "notification[end_date]":{
-            required: "Please select end date",
-          },
-          "send_time":{
-            required: "Please select send time",
-          },
-          "offer[name]": {
-            required: "Offer name is required",
-          },
-          "offer[start_date]":{
-            required: "Please select start date",
-          },
-          "offer[end_date]":{
-            required: "Please select end date",
-          },
-          "reward[name]": {
-            required: "Reward name is required"
-          },
-          "reward[loyalty_points]": {
-            required: "Loyalty points are required",
-            digits: "Loyalty points must be an integer"
-          },
-          "reward[per_user_per_month]": {
-            required: "Redeem limit is required",
-            digits: "Redeem limit must be an integer"
-          },
-          "card": {
-            required: "Please select card",
-          },
-          "tier": {
-            required: "Please select tier",
-          },
-          "admin_notification[send_date]":{
-            required: "Please select date and time"
-          },
-          "trivia_question[game_id]":{
-            required: "Please select game",
-          },
-          "trivia_question[level_id]":{
-            required: "Please select level",
-          },
-          "trivia_question[category_id]":{
-            required: "Please select category",
-          },
-          "trivia_question[sub_category_id]":{
-            required: "Please select sub category",
-          },
-          "trivia_question[question]":{
-            required: "Question is required",
-          },
-          "trivia_question[answer1]":{
-            required: "Answer1 is required",
-          },
-          "trivia_question[answer2]":{
-            required: "Answer2 is required",
-          },
-          "trivia_question[answer3]":{
-            required: "Answer3 is required",
-          },
-          "trivia_question[answer4]":{
-            required: "Answer4 is required",
-          },
-          "trivia_question[correct_answer]":{
-            required: "Correct answer is required",
           },
           agree: "Please accept our policy"
       }

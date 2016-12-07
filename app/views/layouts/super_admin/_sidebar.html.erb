@@ -25,7 +25,7 @@
 			<div class="category-content no-padding">
 				<ul class="navigation navigation-main navigation-accordion">
 					<!-- Main -->
-					<li class="<%#=active_class(super_admin_dashboard_index_path)%>" ><a href="<%#=super_admin_dashboard_index_path%>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+					<!--<li class="<%#=active_class(super_admin_dashboard_index_path)%>" ><a href="<%#=super_admin_dashboard_index_path%>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>-->
 
 
           <li class="<%= active_class(users_path) %>">
@@ -59,7 +59,7 @@
           <li id="notification" class="<%#=active_class(super_admin_admin_notifications_path)%>">
 						<a href="<%#=super_admin_admin_notifications_path%>" id="notification-link" class="has-ul"><i class="icon-list"></i><span>Reports</span></a>
 						<ul>
-							<li class="<%= daily_report_path %>">
+							<li class="<%= active_class(daily_report_path) %>">
 								<a href="<%= daily_report_path %>">Daily</a>
 							</li>
 							<li class="<%= active_class(weekly_report_path) %>">
@@ -70,8 +70,6 @@
 							</li>
 						</ul>
 					</li>
-
-
 
 					<!-- /main -->
 				</ul>

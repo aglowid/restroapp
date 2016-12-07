@@ -1,5 +1,12 @@
-<h1>New food</h1>
 
+<%= content_for :header do %>
+  New Food
+<% end %>
+<%= content_for :sub_header do %>
+  <li><a href="<%= foods_path %>"> Food </a></li>
+  <li class= "active"> New </li>
+<% end %>
+<%= render '/users/base/page_header' %>
 <%= render 'form' %>
 
-<%= link_to 'Back', foods_path %>
+

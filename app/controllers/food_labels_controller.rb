@@ -22,13 +22,21 @@ class FoodLabelsController < ApplicationController
 
   def create
     @food_label = FoodLabel.new(food_label_params)
-    @food_label.save
-    respond_with(@food_label)
+    if @food_label.save
+      redirect_to food_labels_path ,:notice => "Food label successfully created."
+    else
+      render :new
+    end
+
   end
 
   def update
     @food_label.update(food_label_params)
-    respond_with(@food_label)
+    if @food_label.save
+      redirect_to food_labels_path ,:notice => "Food label successfully updated."
+    else
+      render :new
+    end
   end
 
   def destroy
