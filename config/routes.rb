@@ -28,6 +28,8 @@ Restroapp::Application.routes.draw do
   post 'pay_bill_update' => 'orders#pay_bill_update'
 
   get 'daily_report' => 'orders#daily_report'
+  get 'weekly_report' => 'orders#weekly_report'
+  get 'monthly_report' => 'orders#monthly_report'
 
     namespace :api, :defaults => {:format => 'json'} do
     scope :module => :v1 do
