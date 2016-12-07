@@ -1,0 +1,10 @@
+<%= content_for :header do %>
+	Users - Edit
+<% end %>
+<%= content_for :sub_header do %>
+	<li><a href="<%= users_path %>"> Users </a></li>
+	<li class= "active"> Edit </li>
+<% end %>
+<%= render '/users/base/page_header' %>
+
+<%= render 'form' %>
