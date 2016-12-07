@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   belongs_to :user_type
   has_many :order
 
-
+  ## Constants ##
+  GENDER = [["Male","Male"],["Female","Female"]]
+  
   ##instance methods##
 
   def display_errors

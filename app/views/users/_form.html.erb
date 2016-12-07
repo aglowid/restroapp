@@ -1,0 +1,63 @@
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= form_for @user, url:  user_create_users_path ,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
+
+              <div class="form-group">
+                <%= f.label :first_name %>
+                <%= f.text_field :first_name , class: "form-control"%>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :last_name %>
+                <%= f.text_field :last_name , class: "form-control"%>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email , class: "form-control"%>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password , class: "form-control"%>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation , class: "form-control"%>     
+              </div>              
+
+              <div class="form-group">
+                <%= f.label :user_type_id ,"Waiter"%>
+                <%= f.select :user_type_id, options_for_select(@user_type) , {:prompt => " Select User Type" } , class: "form-control"  %>     
+              </div>
+
+              <div class="form-group">
+                <%= f.label :gender %>
+                <%= f.select :gender, options_for_select(User::GENDER) , {:prompt => " Select Gender" } , class: "form-control"  %>
+              </div>
+
+         
+              <div class="form-group">
+                <%= f.label :contact_no %>
+                <%= f.text_field :contact_no , class: "form-control"%>
+              </div>
+
+              <div class="actions">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.submit :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner width120" %>
+                  </div>
+                </div>
+              </div>
+ 
+          <!-- </div> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

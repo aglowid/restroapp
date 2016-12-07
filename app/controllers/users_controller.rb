@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :set_data, only: [:new, :user_create]
+
 
 	def change_password
 	  @user = User.find(current_user)
@@ -17,7 +19,17 @@ class UsersController < ApplicationController
 	end	
 
 	def new
+    @user = User.new
+	end	
 
+	def user_create
+		@user = User.new(user_params)
+		if @user.save
+			redirect_to users_path ,:notice => "user successfully created."
+		else
+		  render :new 
+      flash[:error] = @user.display_errors
+		end	
 	end	
 
   # list all users (managers and waiters)
@@ -31,5 +43,13 @@ class UsersController < ApplicationController
 	def change_password_params
 	  params.require(:user).permit(:current_password,:password)
 	end
+
+	def user_params
+		params.require(:user).permit(:id,:email,:first_name,:last_name,:password,:password_confirmation,:contact_no, :gender, :user_type_id)
+	end	
+
+	def set_data
+		@user_type = UserType.where.not(:name => "Admin").pluck(:name,:id)
+	end	
 
 end

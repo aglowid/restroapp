@@ -46,6 +46,7 @@ Restroapp::Application.routes.draw do
   resources :users do
     collection {
       get :change_password
+      post :user_create
     }
   end
 
