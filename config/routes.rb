@@ -30,6 +30,9 @@ Restroapp::Application.routes.draw do
   get 'daily_report' => 'orders#daily_report'
   get 'weekly_report' => 'orders#weekly_report'
   get 'monthly_report' => 'orders#monthly_report'
+  post 'get_weekly_report' => 'orders#get_weekly_report'
+  post 'get_daily_report' => 'orders#get_daily_report'
+  post 'get_monthly_report' => 'orders#get_monthly_report'
 
     namespace :api, :defaults => {:format => 'json'} do
     scope :module => :v1 do

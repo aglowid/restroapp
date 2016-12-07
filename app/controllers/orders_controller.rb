@@ -92,11 +92,69 @@ class OrdersController < ApplicationController
   end
 
   def monthly_report
-    @orders = Order.where("DATE(created_at) = ?", Date.today)
-    @total = Order.where("DATE(created_at) = ?", Date.today).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    @orders = Order.where('created_at >= ?', DateTime.now.month)
+    @total = Order.where('created_at >= ?', DateTime.now.month).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
     respond_with(@orders)
   end
 
+  def get_weekly_report
+
+    today = Date.today # Today's date
+    @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
+    @week =  (today.at_beginning_of_week..today.at_end_of_week).map.each { |day| day }
+
+    if !params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) IN (?) && dinning_table_id = ? && user_id = ?', @week, params["dinning_table_id"], params["user_id"])
+      @total = Order.where('DATE(created_at) IN (?) && dinning_table_id = ? && user_id = ?', @week, params["dinning_table_id"], params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif !params["dinning_table_id"].blank? && params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) IN (?) && dinning_table_id = ?', @week, params["dinning_table_id"])
+      @total = Order.where('DATE(created_at) IN (?) && dinning_table_id = ?', @week, params["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) IN (?) && user_id = ?', @week, params["user_id"])
+      @total = Order.where('DATE(created_at) IN (?) && user_id = ?', @week, params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    else
+      @orders = Order.where('DATE(created_at) IN (?)', @week)
+      @total = Order.where('DATE(created_at) IN (?)', @week).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    end
+
+    render :partial =>"orders/report_filter"
+  end
+
+  def get_daily_report
+    if !params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) = ? && dinning_table_id = ? && user_id = ?', Date.today, params["dinning_table_id"], params["user_id"])
+      @total = Order.where('DATE(created_at) = ? && dinning_table_id = ? && user_id = ?', Date.today, params["dinning_table_id"], params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif !params["dinning_table_id"].blank? && params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) = ?&& dinning_table_id = ?', Date.today, params["dinning_table_id"])
+      @total = Order.where('DATE(created_at) = ?&& dinning_table_id = ?', Date.today, params["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('DATE(created_at) = ? && user_id = ?', Date.today, params["user_id"])
+      @total = Order.where('DATE(created_at) = ? && user_id = ?', Date.today, params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    else
+      @orders = Order.where('DATE(created_at) = ?', Date.today)
+      @total = Order.where('DATE(created_at) = ?', Date.today).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    end
+
+    render :partial =>"orders/report_filter"
+  end
+
+  def get_monthly_report
+    if !params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('created_at >= ? && dinning_table_id = ? && user_id = ?', DateTime.now.month, params["dinning_table_id"], params["user_id"])
+      @total = Order.where('created_at >= ? && dinning_table_id = ? && user_id = ?', DateTime.now.month, params["dinning_table_id"], params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif !params["dinning_table_id"].blank? && params["user_id"].blank?
+      @orders = Order.where('created_at >= ? && dinning_table_id = ?', DateTime.now.month, params["dinning_table_id"])
+      @total = Order.where('created_at >= ? && dinning_table_id = ?', DateTime.now.month, params["dinning_table_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    elsif params["dinning_table_id"].blank? && !params["user_id"].blank?
+      @orders = Order.where('created_at >= ? && user_id = ?', DateTime.now.month, params["user_id"])
+      @total = Order.where('created_at >= ? && user_id = ?', DateTime.now.month, params["user_id"]).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    else
+      @orders = Order.where('created_at >= ?', DateTime.now.month)
+      @total = Order.where('created_at >= ?', DateTime.now.month).select("*,sum(no_of_person) as total_no_of_person, sum(bill_amount) as total_bill_amount, sum(discount) as total_discount, sum(paid_amount) as total_paid_amount" )
+    end
+
+    render :partial =>"orders/report_filter"
+  end
 
 
   private
