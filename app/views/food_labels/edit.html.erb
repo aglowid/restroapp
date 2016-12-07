@@ -1,6 +1,14 @@
-<h1>Editing food_label</h1>
+<%= content_for :header do %>
+  Food Label - Edit
+<% end %>
+<%= content_for :sub_header do %>
+  <li><a href="<%= food_labels_path %>"> Food Label </a></li>
+  <li class= "active"> Edit </li>
+<% end %>
+<%= render '/users/base/page_header' %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @food_label %> |
-<%= link_to 'Back', food_labels_path %>
+
+
+

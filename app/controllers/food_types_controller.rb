@@ -22,13 +22,21 @@ class FoodTypesController < ApplicationController
 
   def create
     @food_type = FoodType.new(food_type_params)
-    @food_type.save
-    respond_with(@food_type)
+
+    if @food_type.save
+      redirect_to food_types_path ,:notice => "Food type successfully created."
+    else
+      render :new
+    end
   end
 
   def update
     @food_type.update(food_type_params)
-    respond_with(@food_type)
+    if @food_type.save
+      redirect_to food_types_path ,:notice => "Food type successfully updated."
+    else
+      render :new
+    end
   end
 
   def destroy

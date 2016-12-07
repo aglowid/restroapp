@@ -19,8 +19,6 @@
         <thead>
         <tr>
           <th>Name</th>
-          <th></th>
-          <th></th>
           <th class ="text-center" id="list_action"><b>Action</b></th>
         </tr>
         </thead>
@@ -28,9 +26,17 @@
         <% @food_types.each do |food_type| %>
           <tr>
             <td><%= food_type.name %></td>
-            <td><%= link_to 'Show', food_type %></td>
-            <td><%= link_to 'Edit', edit_food_type_path(food_type) %></td>
-            <td><%= link_to 'Destroy', food_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center">
+              <ul class="icons-list icons-list-vertical">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="icon-menu9 redicon"></i></a>
+
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><%= edit_link(edit_food_type_path(food_type)) %></li>
+                    <li><%= delete_link(food_type_path(food_type)) %></li>
+                  </ul>
+              </ul>
+            </td>
           </tr>
         <% end %>
         </tbody>

@@ -19,8 +19,6 @@
         <thead>
         <tr id="sort_data">
           <th>Name</th>
-          <th></th>
-          <th></th>
           <th class ="text-center" id="list_action"><b>Action</b></th>
         </tr>
         </thead>
@@ -28,9 +26,17 @@
         <% @food_labels.each do |food_label| %>
           <tr>
             <td><%= food_label.name %></td>
-            <td><%= link_to 'Show', food_label %></td>
-            <td><%= link_to 'Edit', edit_food_label_path(food_label) %></td>
-            <td><%= link_to 'Destroy', food_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center">
+              <ul class="icons-list icons-list-vertical">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="icon-menu9 redicon"></i></a>
+
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><%= edit_link(edit_food_label_path(food_label)) %></li>
+                    <li><%= delete_link(food_label_path(food_label)) %></li>
+                  </ul>
+              </ul>
+            </td>
           </tr>
         <% end %>
         </tbody>

@@ -1,21 +1,29 @@
-<%= form_for(@food_type) do |f| %>
-  <% if @food_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@food_type.errors.count, "error") %> prohibited this food_type from being saved:</h2>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= form_for @food_type,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
 
-      <ul>
-      <% @food_type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <div class="form-group  has-feedback">
+              <%= f.label :name %>
+              <%= f.text_field :name , class: "form-control"%>
+            </div>
+
+            <div class="actions">
+              <div class="row">
+                <div class="col-lg-6">
+                  <%= f.submit :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner " %>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
