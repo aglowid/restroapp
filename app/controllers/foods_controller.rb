@@ -31,7 +31,7 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
 
     if @food.save
-      redirect_to foods_path ,:notice => "Food successfully create."
+      redirect_to foods_path ,:notice => "Food successfully created."
     else
       render :new
     end

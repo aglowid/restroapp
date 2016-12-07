@@ -41,7 +41,7 @@ class FoodTypesController < ApplicationController
 
   def destroy
     @food_type.destroy
-    redirect_to food_types_path ,:notice => "Food Type successfully deleted."
+    redirect_to food_types_path ,:notice => "Food type successfully deleted."
     #respond_with(@food_type)
   end
 
