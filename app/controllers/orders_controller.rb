@@ -57,7 +57,6 @@ class OrdersController < ApplicationController
 
   def pay_bill
     @order = Order.includes(order_items: :food).find(params[:order_id])
-
     dinning_table = DinningTable.find(@order.dinning_table_id) rescue nil
     dinning_table.update_attributes(:is_available=> true)
 
