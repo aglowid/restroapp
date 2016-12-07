@@ -10,7 +10,7 @@
 					<div class="media-body">
 						<span class="media-heading text-semibold"><%#=current_user.first_name.capitalize%></span>
 						<div class="text-size-mini text-muted">
-							<i class="icon-pin text-size-small"></i>
+							<!--<i class="icon-pin text-size-small"></i>-->
 							<% if current_user.present? %>
 								<%= current_user.try(:city) %> , <%= current_user.try(:state) %>
 							<% end %>
@@ -33,31 +33,31 @@
           </li>
 
           <li class="<%= active_class(orders_path) %>">
-            <a href="<%= orders_path %>"><i class="icon-stack2"></i><span>Orders</span></a>
+            <a href="<%= orders_path %>"><i class="icon-primitive-dot"></i><span>Orders</span></a>
           </li>
 
           <li class="<%= active_class(dinning_tables_path) %>">
-            <a href="<%= dinning_tables_path %>"><i class="icon-stack2"></i><span>Table</span></a>
+            <a href="<%= dinning_tables_path %>"><i class="icon-primitive-dot"></i><span>Table</span></a>
           </li>
 
           <li class="<%= active_class(food_categories_path) %>">
-            <a href="<%= food_categories_path %>"><i class="icon-stack2"></i><span>Food Categories</span></a>
+            <a href="<%= food_categories_path %>"><i class="icon-primitive-dot"></i><span>Food Categories</span></a>
           </li>
 
           <li class="<%= active_class(food_types_path) %>">
-            <a href="<%= food_types_path %>"><i class="icon-stack2"></i><span>Food Types</span></a>
+            <a href="<%= food_types_path %>"><i class="icon-primitive-dot"></i><span>Food Types</span></a>
           </li>
 
           <li class="<%= active_class(food_labels_path) %>">
-            <a href="<%= food_labels_path %>"><i class="icon-stack2"></i><span>Food Labels</span></a>
+            <a href="<%= food_labels_path %>"><i class="icon-primitive-dot"></i><span>Food Labels</span></a>
           </li>
 
           <li class="<%= active_class(foods_path) %>">
-            <a href="<%= foods_path %>"><i class="icon-stack2"></i><span>Food</span></a>
+            <a href="<%= foods_path %>"><i class="icon-primitive-dot"></i><span>Food</span></a>
           </li>
 
           <li id="notification" class="<%#=active_class(super_admin_admin_notifications_path)%>">
-						<a href="<%#=super_admin_admin_notifications_path%>" id="notification-link" class="has-ul"><i class="icon-list"></i><span>Reports</span></a>
+						<a href="<%#=super_admin_admin_notifications_path%>" id="notification-link" class="has-ul"><i class="icon-primitive-dot"></i><span>Reports</span></a>
 						<ul>
 							<li class="<%= active_class(daily_report_path) %>">
 								<a href="<%= daily_report_path %>">Daily</a>
