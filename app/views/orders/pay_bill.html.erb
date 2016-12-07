@@ -1,49 +1,121 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Dinning table:</strong>
-  <%= @order.dinning_table_id %>
-</p>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <p>
+            <strong>Dinning table:</strong>
+            <%= @order.dinning_table_id %>
+          </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
+          <p>
+            <strong>User:</strong>
+            <%= @order.user_id %>
+          </p>
 
-<p>
-  <strong>No of person:</strong>
-  <%= @order.no_of_person %>
-</p>
+          <p>
+            <strong>No of person:</strong>
+            <%= @order.no_of_person %>
+          </p>
 
 
-<% @order.order_items.each do |order_item| %>
-  <p>
-    <strong>Order Item name:</strong>
-    <%= order_item.food.name %>
+          <% @order.order_items.each do |order_item| %>
+            <p>
+              <strong>Order Item name:</strong>
+              <%= order_item.food.name %>
 
-    <strong>qty:</strong>
-    <%= order_item.qty %>
-  </p>
-<% end %>
+              <strong>qty:</strong>
+              <%= order_item.qty %>
+            </p>
+          <% end %>
 
-<p>
-  <strong>Bill amount:</strong>
-  <%= @order.bill_amount %>
-</p>
+          <p>
+            <strong>Bill amount:</strong>
+            <%= @order.bill_amount %>
+          </p>
 
-<%= form_tag pay_bill_update_path do %>
+          <%= form_tag pay_bill_update_path, :class => "form-validate-jquery", :novalidate=>"novalidate" do %>
 
-  <%= hidden_field_tag 'order_id',@order.id  %>
-  <%= label_tag :discount %>
-  <%= number_field_tag :discount, @order.discount %>
+            <%= hidden_field_tag 'order_id',@order.id  %>
 
-  <br><br>
-  <%= label_tag :paid_amount %>
-  <%= number_field_tag :paid_amount,@order.paid_amount  %>
-  <br><br>
-  <%= submit_tag "Forward" %>
+            <div class="form-group  has-feedback">
+              <%= label_tag :discount  %>
+              <%= number_field_tag :discount,  @order.discount  , class: "form-control"%>
+            </div>
 
-<% end %>
+            <div class="form-group  has-feedback">
+              <%= label_tag :paid_amount  %>
+              <%= number_field_tag :paid_amount,  @order.paid_amount , class: "form-control"%>
+            </div>
+
+            <div class="actions">
+              <div class="row">
+                <div class="col-lg-6">
+                  <%= submit_tag "Pay Bill", :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner " %>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+              <!--<p id="notice"><%= notice %></p>-->
+
+<!--<p>-->
+  <!--<strong>Dinning table:</strong>-->
+  <!--<%= @order.dinning_table_id %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<strong>User:</strong>-->
+  <!--<%= @order.user_id %>-->
+<!--</p>-->
+
+<!--<p>-->
+  <!--<strong>No of person:</strong>-->
+  <!--<%= @order.no_of_person %>-->
+<!--</p>-->
+
+
+<!--<% @order.order_items.each do |order_item| %>-->
+  <!--<p>-->
+    <!--<strong>Order Item name:</strong>-->
+    <!--<%= order_item.food.name %>-->
+
+    <!--<strong>qty:</strong>-->
+    <!--<%= order_item.qty %>-->
+  <!--</p>-->
+<!--<% end %>-->
+
+<!--<p>-->
+  <!--<strong>Bill amount:</strong>-->
+  <!--<%= @order.bill_amount %>-->
+<!--</p>-->
+
+<!--<%= form_tag pay_bill_update_path do %>-->
+
+  <!--<%= hidden_field_tag 'order_id',@order.id  %>-->
+  <!--<%= label_tag :discount %>-->
+  <!--<%= number_field_tag :discount, @order.discount %>-->
+
+  <!--<br><br>-->
+  <!--<%= label_tag :paid_amount %>-->
+  <!--<%= number_field_tag :paid_amount,@order.paid_amount  %>-->
+  <!--<br><br>-->
+  <!--<%= submit_tag "Forward" %>-->
+
+<!--<% end %>-->
 
 <script>
   $("#discount").live("keyup", function(){
