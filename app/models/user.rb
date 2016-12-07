@@ -6,16 +6,20 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Associations ##      
-
   has_many :authentication_tokens
   belongs_to :user_type
   has_many :order
+
+  ## Validations ##
+  validates_presence_of :first_name, :user_type
+  validates :contact_no,  :presence => {:message => 'Invalid contact no'},
+                     :numericality => true,
+                     :length => { :minimum => 10, :maximum => 15 }
 
   ## Constants ##
   GENDER = [["Male","Male"],["Female","Female"]]
   
   ##instance methods##
-
   def display_errors
     self.errors.full_messages
   end

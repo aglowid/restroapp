@@ -6,7 +6,7 @@
         <div class="col-lg-6">
           <%= form_for @user, url:  path ,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
 
-              <div class="form-group">
+              <div class="form-group  has-feedback">
                 <%= f.label :first_name %>
                 <%= f.text_field :first_name , class: "form-control"%>     
               </div>
@@ -37,7 +37,7 @@
               <% end %>                
 
               <div class="form-group">
-                <%= f.label :user_type_id ,"Waiter"%>
+                <%= f.label :user_type_id ,"User Type"%>
                 <%= f.select :user_type_id, options_for_select(@user_type) , {:prompt => " Select User Type" } , class: "form-control"  %>     
               </div>
 

@@ -30,8 +30,8 @@
 //= require uniform.min
 //= require spin.min
 //= require ladda.min
-// require validate.min
-// require form_validation
+//= require validate.min
+//= require form_validation
 //= require app
 //= require components_buttons
 // require sorting_remove

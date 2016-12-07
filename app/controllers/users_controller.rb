@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_data, only: [:new, :user_create, :edit]
+	before_action :set_data, only: [:new, :user_create, :edit,:update_user]
   before_action :set_user, only: [:edit, :update_user, :destroy]
 
 	def change_password
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 			redirect_to users_path ,:notice => "user successfully created."
 		else
 		  render :new 
-      flash[:error] = @user.display_errors
+      #flash[:error] = @user.display_errors
 		end	
 	end	
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 			redirect_to users_path ,:notice => "user successfully updated."
 		else
 		  render :new 
-      flash[:error] = @user.display_errors
+      #flash[:error] = @user.display_errors
 		end	
 	end	
 
