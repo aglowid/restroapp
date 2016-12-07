@@ -23,19 +23,20 @@ class FoodCategoriesController < ApplicationController
   def create
     @food_category = FoodCategory.new(food_category_params)
     @food_category.save
-    redirect_to food_categories_path, :notice => "Food Category created successfully"
+    redirect_to food_categories_path, :notice => "Food Category successfully created"
     #respond_with(@food_category)
   end
 
   def update
     @food_category.update(food_category_params)
-    redirect_to food_categories_path, :notice => "Food Category updated successfully"
+    redirect_to food_categories_path, :notice => "Food Category successfully updated"
     #respond_with(@food_category)
   end
 
   def destroy
     @food_category.destroy
-    respond_with(@food_category)
+    #respond_with(@food_category)
+    redirect_to food_categories_path, :notice => "Food Category successfully deleted"
   end
 
   private
