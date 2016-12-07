@@ -259,7 +259,7 @@ class OrdersController < ApplicationController
 
     def set_data
       @dinning_table = DinningTable.where(:is_available=>true).map{|table| [table.table_no, table.id]}
-      @users = User.all.map{|user| [user.email, user.id]}
+      @users = User.where(:user_type_id => 2).map{|user| [user.full_name, user.id]}
     end  
 
     def order_params
