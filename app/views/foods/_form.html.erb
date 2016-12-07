@@ -1,47 +1,62 @@
-<%= form_for(@food) do |f| %>
-  <% if @food.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body panel-width">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= form_for @food,:html =>{:class => "form-validate-jquery", :novalidate=>"novalidate"} do |f| %>
 
-      <ul>
-      <% @food.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <div class="form-group  has-feedback">
+              <%= f.label :name %>
+              <%= f.text_field :name , class: "form-control"%>
+            </div>
+
+            <div class="form-group  has-feedback">
+              <%= f.label :ingredients %>
+              <%= f.text_area :ingredients , class: "form-control"%>
+            </div>
+
+            <div class="form-group  has-feedback">
+              <%= f.label :description %>
+              <%= f.text_area :description , class: "form-control"%>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :food_category_id ,"Food Category"%>
+              <%= f.select :food_category_id, options_for_select(@food_category) , {:prompt => " Select food category" } , class: "form-control"  %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :food_type_id ,"Food Type"%>
+              <%= f.select :food_type_id, options_for_select(@food_type) , {:prompt => " Select food type" } , class: "form-control"  %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :food_label_id ,"Food Label"%>
+              <%= f.select :food_label_id, options_for_select(@food_label) , {:prompt => " Select food label" } , class: "form-control"  %>
+            </div>
+
+            <div class="form-group  has-feedback">
+              <%= f.label :price %>
+              <%= f.text_field :price , class: "form-control"%>
+            </div>
+
+
+            <div class="actions">
+              <div class="row">
+                <div class="col-lg-6">
+                  <%= f.submit :class => "btn bg-teal-400 btn-ladda btn-ladda-spinner " %>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :ingredients %><br>
-    <%= f.text_area :ingredients %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
 
-  <div class="field">
-    <%= f.label :food_category_id %><br>
-    <%= f.select :food_category_id, options_for_select(@food_category) %>
-    <%#= f.number_field :food_category %>
-  </div>
-  <div class="field">
-    <%= f.label :food_type_id %><br>
-    <%= f.select :food_type_id, options_for_select(@food_type) %>
-  </div>
-  <div class="field">
-    <%= f.label :food_label_id %><br>
-    <%= f.select :food_label_id, options_for_select(@food_label) %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
+
