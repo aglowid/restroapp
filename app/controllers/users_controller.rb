@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :set_data, only: [:new, :user_create]
-
+	before_action :set_data, only: [:new, :user_create, :edit]
+  before_action :set_user, only: [:edit, :update_user, :destroy]
 
 	def change_password
 	  @user = User.find(current_user)
@@ -18,10 +18,12 @@ class UsersController < ApplicationController
 		end		
 	end	
 
+  # user new form
 	def new
     @user = User.new
 	end	
 
+  # create new user
 	def user_create
 		@user = User.new(user_params)
 		if @user.save
@@ -38,6 +40,27 @@ class UsersController < ApplicationController
 		@users = User.includes(:user_type).where.not(:user_type_id => user_type.id )
 	end	
 
+	def edit
+	end	
+  
+  def destroy
+		if @user.destroy
+			redirect_to users_path , notice: "User successfully deleted."
+		else
+			flash[:error] = "User not deleted."
+			redirect_to users_path
+		end
+  end	
+
+	def update_user
+		if @user.update(user_params)
+			redirect_to users_path ,:notice => "user successfully updated."
+		else
+		  render :new 
+      flash[:error] = @user.display_errors
+		end	
+	end	
+
 	protected 
 
 	def change_password_params
@@ -51,5 +74,9 @@ class UsersController < ApplicationController
 	def set_data
 		@user_type = UserType.where.not(:name => "Admin").pluck(:name,:id)
 	end	
+
+  def set_user
+  	@user = User.find(params[:id])
+  end	
 
 end
