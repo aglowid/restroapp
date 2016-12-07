@@ -195,7 +195,7 @@ $(function() {
           },
           "dinning_table[max_seat]":{
               required:true,
-          },          
+          },        
           "user[password]":{
             required:true,
             minlength: 6
@@ -207,7 +207,7 @@ $(function() {
           "user[user_type_id]": {
             required: true,
           },
-          "admin_notification[message]": {
+          "order[order_items_attributes][0][food_id]": {
             required: true,
           },
           "food_category[name]": {
@@ -342,18 +342,6 @@ $(function() {
             required: true,
             digits: true
           },
-          "reward[per_user_per_month]": {
-            required: true,
-            digits: true,
-            minlength: 10,
-            maxlength: 15,
-          },
-          "card": {
-            required: true,
-          },
-          "tier": {
-            required: true,
-          },
         },
         messages: {
           "user[locations_attributes][0][opening_hour]" :{
@@ -391,49 +379,8 @@ $(function() {
           "food_category[name]": {
             required: "Please enter food category name",
           },
-          "setting[search_mile]": {
-            required: "Search mile is required",
-            digits: "Search mile must be an integer",
-          },
-          "setting[time_zone]": {
-            required: "Please select time zone",
-          },
-          "setting[per_minute_loyalty_points]": {
-            required: "Loyalty points are required",
-            number: "Loyalty points must be a number",
-          },
-          "social_media_point[social_media_name]": {
-            required: "Social media name is required",
-          },
-          "social_media_point[check_in_credits]": {
-            required: "Check in credits are required",
-            number: "Check in credits must be a number",
-          },
-          "social_media_point[loyalty_points]": {
-            required: "Loyalty points are required",
-            number: "Loyalty points must be a number",
-          },
-          "state[name]" :{
-            required: "State Name is required",
-          },
-          "tier[name]": {
-            required: "Tier name is required"
-          },
-          "tier[charge]": {
-            required: "Tier charge is required",
-            number: "Tier charge must be a number"
-          },
-          "tier[number_of_pn]": {
-            required: "Push notification number is required",
-            digits: "Push notification number must be an integer"
-          },
-          "tier[text_message]": {
-            required: "Text message number is required",
-            digits: "Text message number must be an integer"
-          },
-          "tier[email]": {
-            required: "Number of email is required",
-            digits: "Number of email must be an integer"
+          "order[order_items_attributes][0][food_id]": {
+            required: "Please select food item",
           },
           "user[current_password]": {
             required: "Current password is required",
@@ -450,18 +397,6 @@ $(function() {
             minlength: "Please enter atleast 10 digits",
             maxlength: "Enter maximum 15 digits only",
           },
-          // "recurring_type_id":{
-          //   required: "Please select recurring type",
-          // },
-          // "game_play[scheduled_time]":{
-          //   required: "Please select scheduled time",
-          // },
-          // "game_play[start_date]":{
-          //   required: "Please select start date",
-          // },
-          // "game_play[end_date]":{
-          //   required: "Please select end date",
-          // },
           "game_play[category_id]": {
             required: "Please select category",
           },
