@@ -65,7 +65,7 @@
 
 <script>
 
-  $(".food_select_bx").live("change", function(){
+  $(".food_select_bx").on("change", function(){
     var food_id = $(this).val();
     var id = this.id;
     var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
@@ -84,7 +84,7 @@
     });
   });
 
-  $(".qty_select_bx").live("change", function(){
+  $(".qty_select_bx").on("change", function(){
     var food_id = $(this).prev().val();
     var id = $(this).prev()[0].id;
     var id_number = id.split("order_order_items_attributes_")[1].split("_")[0];
@@ -117,7 +117,7 @@
     }
   }
 
-  $("#order_discount").live("keyup", function(){
+  $("#order_discount").on("keyup", function(){
     var discount = $("#order_discount").val();
     var bill_amount = $("#order_bill_amount").val();
     var paid_amount = (parseFloat(bill_amount) - parseFloat(discount));
