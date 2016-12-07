@@ -1,6 +1,10 @@
-<h1>Editing food_category</h1>
+<%= content_for :header do %>
+	Food Category - Edit
+<% end %>
+<%= content_for :sub_header do %>
+	<li><a href="<%= food_categories_path %>"> Food Categories </a></li>
+	<li class= "active"> Edit </li>
+<% end %>
+<%= render '/users/base/page_header' %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @food_category %> |
-<%= link_to 'Back', food_categories_path %>

@@ -23,12 +23,14 @@ class FoodCategoriesController < ApplicationController
   def create
     @food_category = FoodCategory.new(food_category_params)
     @food_category.save
-    respond_with(@food_category)
+    redirect_to food_categories_path, :notice => "Food Category created successfully"
+    #respond_with(@food_category)
   end
 
   def update
     @food_category.update(food_category_params)
-    respond_with(@food_category)
+    redirect_to food_categories_path, :notice => "Food Category updated successfully"
+    #respond_with(@food_category)
   end
 
   def destroy
