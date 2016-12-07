@@ -48,7 +48,8 @@ class FoodsController < ApplicationController
 
   def destroy
     @food.destroy
-    respond_with(@food)
+    redirect_to foods_path ,:notice => "Food successfully deleted."
+    #respond_with(@food)
   end
 
   private

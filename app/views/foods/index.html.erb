@@ -34,9 +34,9 @@
             <td><%= food.name %></td>
             <td><%= food.ingredients %></td>
             <td><%= food.description %></td>
-            <td><%= food.food_category.name %></td>
-            <td><%= food.food_type.name %></td>
-            <td><%= food.food_label.name %></td>
+            <td><%= food.food_category.try(:name) %></td>
+            <td><%= food.food_type.try(:name) %></td>
+            <td><%= food.food_label.try(:name) %></td>
             <td><%= food.price %></td>
             <td class="text-center">
               <ul class="icons-list icons-list-vertical">
