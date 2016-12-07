@@ -45,7 +45,7 @@ class WeeklyReportPdf < Prawn::Document
   def product_rows
     [['#', 'Table', 'Waiter', 'No of person', 'Bill amount', 'Discount', 'Paid amount']] +
         @orders.map do |order|
-          [order.id, order.dinning_table_id, "#{order.user.first_name} #{order.user.last_name}", order.no_of_person,  order.bill_amount, order.discount, order.paid_amount]
+          [order.id, order.dinning_table_id, "#{order.user.try(:first_name)} #{order.user.try(:last_name)}", order.no_of_person,  order.bill_amount, order.discount, order.paid_amount]
         end
   end
 
