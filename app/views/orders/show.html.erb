@@ -1,34 +1,177 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Dinning table:</strong>
-  <%= @order.dinning_table_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>No of person:</strong>
-  <%= @order.no_of_person %>
-</p>
-
-<p>
-  <strong>Bill amount:</strong>
-  <%= @order.bill_amount %>
-</p>
-
-<% @order.order_items.each do |order_item| %>
-	<p>
-	  <strong>Order Item name:</strong>
-	  <%= order_item.food.name %>
-
-	  <strong>qty:</strong>
-	  <%= order_item.qty %>
-	</p>
+<%= content_for :header do %>
+  Order Details
+<% end %>
+<%= content_for :sub_header do %>
 <% end %>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= render '/users/base/page_header' %>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel border-top-xlg border-top-theme-color">
+    <div class="list-group-divider"></div>
+    <div class="panel-body cb">
+    <ul class="progress-list">
+      <li>
+        <b>Dinning table</b>
+        <div class="pull-right">
+          <span><%= @order.dinning_table.try(:name) %></span>
+        </div>
+      </li>
+      <li>
+        <b>Waiter</b>
+        <div class="pull-right">
+          <span><%= @order.user.try(:full_name) %></span>
+        </div>
+      </li>
+      <li>
+        <b>No of person</b>
+        <div class="pull-right">
+          <span><%= @order.no_of_person %></span>
+        </div>
+      </li>
+      <li>
+        <b>Bill amount</b>
+        <span class="pull-right">
+          <%= @order.bill_amount %>
+        </span>
+      </li>
+      <li>
+        <b>Discount</b>
+        <span class="pull-right">
+          <%= @order.discount %>
+        </span>
+      </li>
+      <li>
+        <b>Paid amount</b>
+        <span class="pull-right">
+          <%= @order.paid_amount %>
+        </span>
+      </li>            
+      <li>
+        <b>Is Paid</b>
+        <span class="pull-right">
+          <%= @order.is_paid %>
+        </span>
+      </li>            
+
+    </ul>
+    </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <div class="panel border-top-xlg border-top-theme-color">
+      <div class="tabbable" id="tabs">
+        <div class="content padding10">
+          <ul class="nav nav-tabs nav-tabs-bottom bottom0">
+            <li>
+              <a href="#right-icon-tab1" data-toggle="tab">
+                Order Items
+              </a>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="right-icon-tab1">
+              <div class="panel-body margin-top0 fix-width">
+                <% if @order.order_items.present? %>
+                  <div class="table-responsive">
+                    <table class="table" id="l_redem">
+                      <thead>
+                        <tr>
+                          <th class="w20"><b>Food name</b></th>
+                          <th class="w25"><b>Qty</b></th>
+                        </tr>
+                      </thead>
+                      <% @order.order_items.each do |order_item| %>
+                        <tr>
+                          <td><%= order_item.food.try(:name) %></td>
+                          <td><%= order_item.qty %></td>
+                        </tr>
+                      <% end %>
+                    </table>
+                  </div>
+                <% else %>
+                  <h6> No record found. </h6>
+                <% end %>
+              </div>
+            </div>
+            
+        </div>
+      </div>
+    </div>    
+  </div>
+</div>
+<script type="text/javascript">
+
+  // below code is for remeber tab which is active when user left the page.
+  jQuery(function($) {
+    var index = 'qpsstats-active-tab';
+    //  Define friendly data store name
+    var dataStore = window.sessionStorage;
+    var oldIndex = 0;
+    //  Start magic!
+    try {
+        // getter: Fetch previous value
+        oldIndex = dataStore.getItem(index);
+    } catch(e) {}
+ 
+    $( "#tabs" ).tabs(
+    {
+      active: oldIndex,
+      activate: function(event, ui)
+      {
+        //  Get future value
+        var newIndex = ui.newTab.parent().children().index(ui.newTab);
+        //  Set future value
+        try 
+        {
+          dataStore.setItem( index, newIndex );
+        } catch(e) {}
+      }
+    });
+  });
+
+
+  $(window).load(function() {
+    
+    $('#l_redem').DataTable( {
+        "order": [[ 1, "desc" ]] // column number to be sorted , start with 0 so 2 is for status.
+    
+    });
+
+    
+    $('.datatable-pagination').DataTable({
+        pagingType: "simple",
+        language: {
+          paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+        }
+    });
+
+
+
+    // Datatable with saving state
+    $('.datatable-save-state').DataTable({
+        stateSave: true
+    });
+
+    // External table additions
+    // ------------------------------
+
+    // Add placeholder to the datatable filter option
+    $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
+
+
+    // Enable Select2 select for the length option
+    $('.dataTables_length select').select2({
+        minimumResultsForSearch: Infinity,
+        width: 'auto'
+    });
+  });
+
+
+</script>
