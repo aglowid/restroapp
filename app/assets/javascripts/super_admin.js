@@ -48,6 +48,7 @@
 //= require bootstrap-switch
 //= require form_checkboxes_radios
 //= require bootbox
+//= require jquery_nested_form
 $(window).load(function(){
 	setTimeout(function() {
     $("#flashm").fadeTo(500, 0).slideUp(500, function(){
