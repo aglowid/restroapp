@@ -1,0 +1,48 @@
+<%= content_for :header do %>
+  Users 
+<% end %>
+<%= content_for :sub_header do %>
+  <li class="active"> Listing Users </li>
+<% end %>
+<%= content_for :add_btn do %>
+  <%= link_to new_user_path , class: "btn border-danger-300 text-danger-300 btn-flat btn-rounded btn-icon btn-sm has-text" do %>
+    <i class="icon-plus3"></i>
+  <% end %>
+<% end %>
+
+<%= render '/users/base/page_header' %>
+
+<div class="content">
+  <div class="panel panel-flat border-top-xlg border-top-theme-color">
+    <div class="panel-body table-width">
+      <table class="table datatable-basic">
+        <thead>
+          <tr id="sort_data">
+            <th><b>Name</b></th>
+            <th><b>Email</b></th>
+            <th><b>Contact no</b></th>
+            <th><b>Gender</b></th>
+            <th><b>User Type</b></th>
+            <th class ="text-center" id="list_action"><b>Action</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.full_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.contact_no %></td>
+              <td><%= user.gender %></td>
+              <td><%= user.user_type.try(:name) %></td>
+              <td>
+              <%= link_to 'Show', user %>
+              <%= link_to 'Edit', edit_user_path(user) %>
+              <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

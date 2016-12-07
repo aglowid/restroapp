@@ -16,6 +16,18 @@ class UsersController < ApplicationController
 		end		
 	end	
 
+	def new
+
+	end	
+
+  # list all users (managers and waiters)
+	def index
+		user_type = UserType.find_by(:name => "Admin")
+		@users = User.includes(:user_type).where.not(:user_type_id => user_type.id )
+	end	
+
+	protected 
+
 	def change_password_params
 	  params.require(:user).permit(:current_password,:password)
 	end
