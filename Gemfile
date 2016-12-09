@@ -46,6 +46,8 @@ gem 'prawn'
 gem 'prawn-table'
 
 gem 'wicked_pdf'
+gem 'rails_12factor', group: :production
+
 ruby '2.2.3'
 #gem 'wkhtmltopdf-binary'
 
