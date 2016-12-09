@@ -10,14 +10,13 @@
 #  timeout: 5000
 
 development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: postgresql
+  encoding: unicode
   database: restroapp_development
   pool: 5
-  username: root
-  password: root
-  host: localhost
+  username: postgres
+  password: postgres
+
 #  socket: /opt/lampp/var/mysql/mysql.sock
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -35,20 +34,17 @@ development:
 #  timeout: 5000
 
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: postgresql
+  encoding: unicode
   database: restroapp_test
   pool: 5
-  username: root
-  password: root
-  host: localhost
+  username: postgres
+  password: postgres
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+  adapter: postgresql
+  encoding: unicode
   database: restroapp_production
   pool: 5
-  username: root
-  password: root
+  username: postgres
+  password: postgres
