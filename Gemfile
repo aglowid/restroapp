@@ -46,6 +46,7 @@ gem 'prawn'
 gem 'prawn-table'
 
 gem 'wicked_pdf'
+ruby '2.2.3'
 #gem 'wkhtmltopdf-binary'
 
 #gem 'wkhtmltopdf-binary'
