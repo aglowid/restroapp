@@ -10,12 +10,12 @@
 #  timeout: 5000
 
 development:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   database: restroapp_development
   pool: 5
-  username: postgres
-  password: postgres
+  username: root
+  password: root
 
 #  socket: /opt/lampp/var/mysql/mysql.sock
 # Warning: The database defined as "test" will be erased and
@@ -34,17 +34,17 @@ development:
 #  timeout: 5000
 
 test:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   database: restroapp_test
   pool: 5
-  username: postgres
-  password: postgres
+  username: root
+  password: root
 
 production:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
-  database: restroapp_production
+  database: restroapp_development
   pool: 5
-  username: postgres
-  password: postgres
+  username: root
+  password: root
