@@ -11,8 +11,7 @@
 
 development:
   adapter: mysql2
-  encoding: unicode
-  database: restroapp_development
+  database: restroapp_development1
   pool: 5
   username: root
   password: root
@@ -35,7 +34,6 @@ development:
 
 test:
   adapter: mysql2
-  encoding: unicode
   database: restroapp_test
   pool: 5
   username: root
@@ -43,7 +41,6 @@ test:
 
 production:
   adapter: mysql2
-  encoding: unicode
   database: restroapp_development
   pool: 5
   username: root
