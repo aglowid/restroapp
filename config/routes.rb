@@ -19,7 +19,7 @@ Restroapp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'orders#index'
   get "api_help/index"
 
   post 'get_food_price' => 'orders#get_food_price'
